@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usługi Druku 3D - Dominik Garbicz</title>
+    <title>3D Make - Profesjonalny Druk 3D i Projektowanie</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- NOWY STYL (LIGHT THEME) --- */
         :root {
-            --primary: #f97316; /* Energetyczny pomarańcz */
+            --primary: #f97316; 
             --primary-hover: #ea580c;
-            --dark: #0f172a;    /* Bardzo ciemny granat (tekst) */
-            --gray: #64748b;    /* Szary tekst pomocniczy */
-            --light: #f8fafc;   /* Bardzo jasne tło */
+            --dark: #0f172a;    
+            --gray: #64748b;    
+            --light: #f8fafc;   
             --white: #ffffff;
             --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
@@ -31,7 +30,6 @@
             background-color: var(--white);
         }
 
-        /* --- NAWIGACJA --- */
         nav {
             background-color: rgba(255, 255, 255, 0.95);
             padding: 1.2rem 2rem;
@@ -50,14 +48,9 @@
             font-size: 1.5rem;
             font-weight: 800;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        nav .logo span {
-            color: var(--primary);
-        }
+        nav .logo span { color: var(--primary); }
 
         nav ul {
             list-style: none;
@@ -73,11 +66,8 @@
             transition: color 0.3s;
         }
 
-        nav a:hover {
-            color: var(--primary);
-        }
+        nav a:hover { color: var(--primary); }
 
-        /* --- SEKCJE OGÓLNE --- */
         section {
             padding: 5rem 2rem;
             max-width: 1200px;
@@ -106,7 +96,7 @@
             background: var(--primary);
             color: white;
             padding: 12px 35px;
-            border-radius: 50px; /* Zaokrąglone przyciski */
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: transform 0.2s, background 0.2s;
@@ -118,7 +108,6 @@
             transform: translateY(-2px);
         }
 
-        /* --- HERO SECTION --- */
         .hero {
             display: flex;
             align-items: center;
@@ -129,21 +118,15 @@
             min-height: 80vh;
         }
 
-        .hero-text {
-            flex: 1;
-            padding-right: 2rem;
-        }
+        .hero-text { flex: 1; padding-right: 2rem; }
 
         .hero h1 {
             font-size: 3.5rem;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            color: var(--dark);
         }
 
-        .hero h1 span {
-            color: var(--primary);
-        }
+        .hero h1 span { color: var(--primary); }
 
         .hero p {
             font-size: 1.2rem;
@@ -152,24 +135,18 @@
             max-width: 500px;
         }
 
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
+        .hero-image { flex: 1; display: flex; justify-content: center; }
 
-        /* Placeholder na zdjęcie drukarki - zastąp własnym zdjęciem */
         .printer-mockup {
             width: 100%;
             max-width: 500px;
             height: 400px;
-            background: url('https://images.unsplash.com/photo-1631541909061-71e349d1f203?q=80&w=1000&auto=format&fit=crop') center/cover;
+            background: url('drukarka.png') center/cover;
             border-radius: 20px;
             box-shadow: var(--shadow);
             position: relative;
         }
         
-        /* Ozdobny element pod zdjęciem */
         .printer-mockup::before {
             content: '';
             position: absolute;
@@ -182,12 +159,7 @@
             z-index: -1;
         }
 
-        /* --- OFERTA --- */
-        .bg-light {
-            background-color: var(--light);
-            width: 100%;
-            max-width: 100%;
-        }
+        .bg-light { background-color: var(--light); width: 100%; }
 
         .offer-grid {
             display: grid;
@@ -204,23 +176,8 @@
             border: 1px solid #e2e8f0;
         }
 
-        .offer-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
+        .offer-card:hover { transform: translateY(-5px); border-color: var(--primary); }
 
-        .offer-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        /* --- PORTFOLIO --- */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -235,24 +192,16 @@
             transition: transform 0.3s;
         }
 
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-        }
+        .portfolio-item:hover { transform: translateY(-5px); }
 
-        .portfolio-img-placeholder {
+        .portfolio-img {
             width: 100%;
-            height: 250px;
-            background-color: #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-weight: 500;
+            height: 300px;
+            object-fit: cover;
+            display: block;
         }
 
-        .portfolio-desc {
-            padding: 1.5rem;
-        }
+        .portfolio-desc { padding: 1.5rem; }
         
         .tag {
             display: inline-block;
@@ -265,7 +214,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- KALKULATOR --- */
         .calculator-section {
             background: var(--dark);
             color: white;
@@ -276,14 +224,6 @@
             text-align: center;
         }
 
-        .calculator-section h2 {
-            color: white;
-        }
-        
-        .calculator-section .section-subtitle {
-            color: #94a3b8;
-        }
-
         .calc-container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -291,19 +231,7 @@
             border-radius: 20px;
             max-width: 500px;
             margin: 0 auto;
-            border: 1px solid rgba(255,255,255,0.1);
             text-align: left;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: #cbd5e1;
         }
 
         .calc-input {
@@ -312,7 +240,7 @@
             border: none;
             border-radius: 8px;
             background: rgba(255,255,255,0.9);
-            color: var(--dark);
+            margin-bottom: 1.5rem;
         }
 
         button.calc-btn {
@@ -324,12 +252,6 @@
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.3s;
-        }
-
-        button.calc-btn:hover {
-            background: var(--primary-hover);
         }
 
         #result {
@@ -340,32 +262,25 @@
             color: var(--primary);
         }
 
-        /* --- FOOTER --- */
         footer {
             background: var(--light);
             text-align: center;
             padding: 3rem 2rem;
-            margin-top: 4rem;
             color: var(--gray);
             border-top: 1px solid #e2e8f0;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
+            .hero { flex-direction: column-reverse; text-align: center; }
+            .hero h1 { font-size: 2.5rem; }
             nav { flex-direction: column; gap: 15px; }
-            .hero { flex-direction: column-reverse; text-align: center; padding-top: 2rem;}
-            .hero-text { padding-right: 0; }
-            .hero h1 { font-size: 2.5rem; margin-top: 2rem;}
-            .printer-mockup { height: 300px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo">
-            <span>⚡</span> 3D Maker
-        </a>
+        <a href="#" class="logo">3D<span> Make</span></a>
         <ul>
             <li><a href="#oferta">Oferta</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
@@ -377,68 +292,34 @@
     <header class="hero">
         <div class="hero-text">
             <h1>Twoje pomysły,<br><span>Wydrukowane.</span></h1>
-            <p>Profesjonalny druk 3D na sprzęcie <strong>Bambu Lab A1</strong>. Szybka realizacja, precyzyjne detale i wytrzymałe materiały.</p>
-            <a href="#kalkulator" class="btn">Wyceń projekt za darmo</a>
+            <p>Profesjonalny druk 3D na sprzęcie <strong>Bambu Lab A1</strong>. Precyzja, szybkość i najwyższa jakość wykonania.</p>
+            <a href="#kalkulator" class="btn">Wyceń projekt</a>
         </div>
         <div class="hero-image">
-            <div class="printer-mockup" title="Tu będzie zdjęcie Twojej drukarki"></div>
+            <div class="printer-mockup"></div>
         </div>
     </header>
 
-    <div class="bg-light">
-        <section id="oferta">
-            <h2>Co mogę dla Ciebie zrobić?</h2>
-            <p class="section-subtitle">Specjalizuję się w technologii FDM, oferując szeroki zakres usług dla hobbystów i firm.</p>
-            
-            <div class="offer-grid">
-                <div class="offer-card">
-                    <span class="icon">📂</span>
-                    <h3>Druk z gotowych plików</h3>
-                    <p>Wydrukuję dowolny model z formatów .STL, .OBJ czy .3MF. Idealne dla projektów z Thingiverse czy Printables.</p>
-                </div>
-                <div class="offer-card">
-                    <span class="icon">🛠️</span>
-                    <h3>Projektowanie (CAD)</h3>
-                    <p>Zaprojektuję część zamienną lub prototyp na podstawie Twojego opisu, szkicu lub uszkodzonego elementu.</p>
-                </div>
-                <div class="offer-card">
-                    <span class="icon">🧪</span>
-                    <h3>Materiały Techniczne</h3>
-                    <p>Drukuję z szerokiej gamy filamentów: <strong>PLA, PETG, PETG+ oraz elastycznego TPU.</strong></p>
-                </div>
-            </div>
-        </section>
-    </div>
-
     <section id="portfolio">
         <h2>Moje Realizacje</h2>
-        <p class="section-subtitle">Zobacz jakość wydruków z Bambu Lab A1.</p>
+        <p class="section-subtitle">Zobacz przykładowe projekty wykonane dla moich klientów.</p>
         
         <div class="portfolio-grid">
             <div class="portfolio-item">
-                <div class="portfolio-img-placeholder">Zdjęcie 1</div>
+                <img src="haki.jpeg" alt="Haki i uchwyty 3D" class="portfolio-img">
                 <div class="portfolio-desc">
-                    <span class="tag">PETG+</span>
-                    <h4>Uchwyt techniczny</h4>
-                    <p>Wytrzymały uchwyt zaprojektowany pod duże obciążenia.</p>
+                    <span class="tag">PETG / PETG+</span>
+                    <h4>Zestaw uchwytów technicznych</h4>
+                    <p>Wytrzymałe elementy montażowe o wysokiej odporności mechanicznej.</p>
                 </div>
             </div>
 
             <div class="portfolio-item">
-                <div class="portfolio-img-placeholder">Zdjęcie 2</div>
+                <div style="height:300px; background:#ddd; display:flex; align-items:center; justify-content:center;">Miejsce na Twoje zdjęcie</div>
                 <div class="portfolio-desc">
-                    <span class="tag">PLA Silk</span>
-                    <h4>Figurka ozdobna</h4>
-                    <p>Wydruk o wysokiej estetyce i gładkiej powierzchni.</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <div class="portfolio-img-placeholder">Zdjęcie 3</div>
-                <div class="portfolio-desc">
-                    <span class="tag">TPU</span>
-                    <h4>Uszczelka elastyczna</h4>
-                    <p>Element gumopodobny, odporny na ściskanie.</p>
+                    <span class="tag">PLA</span>
+                    <h4>Model prototypowy</h4>
+                    <p>Szybki wydruk koncepcyjny o wysokiej precyzji wymiarowej.</p>
                 </div>
             </div>
         </div>
@@ -446,28 +327,20 @@
 
     <div style="padding: 0 1rem;">
         <section id="kalkulator" class="calculator-section">
-            <h2>Szybka Wycena</h2>
-            <p class="section-subtitle">Sprawdź orientacyjny koszt wydruku.</p>
-            
+            <h2 style="color:white;">Szybka Wycena</h2>
             <div class="calc-container">
-                <div class="form-group">
-                    <label>Waga wydruku (gramy):</label>
-                    <input type="number" id="material-weight" class="calc-input" placeholder="np. 50">
-                </div>
+                <label style="color:#cbd5e1; font-size:0.9rem;">Waga wydruku (gramy):</label>
+                <input type="number" id="material-weight" class="calc-input" placeholder="np. 50">
                 
-                <div class="form-group">
-                    <label>Czas druku (godziny):</label>
-                    <input type="number" id="print-time" class="calc-input" placeholder="np. 4">
-                </div>
+                <label style="color:#cbd5e1; font-size:0.9rem;">Czas druku (godziny):</label>
+                <input type="number" id="print-time" class="calc-input" placeholder="np. 4">
 
-                <div class="form-group">
-                    <label>Materiał:</label>
-                    <select id="material-type" class="calc-input">
-                        <option value="80">PLA (Standard)</option>
-                        <option value="90">PETG / PETG+ (Wytrzymały)</option>
-                        <option value="120">TPU (Elastyczny)</option>
-                    </select>
-                </div>
+                <label style="color:#cbd5e1; font-size:0.9rem;">Materiał:</label>
+                <select id="material-type" class="calc-input">
+                    <option value="80">PLA (Standard)</option>
+                    <option value="90">PETG / PETG+ (Wytrzymały)</option>
+                    <option value="120">TPU (Elastyczny)</option>
+                </select>
 
                 <button class="calc-btn" onclick="calculatePrice()">Oblicz Koszt</button>
                 <div id="result">0.00 PLN</div>
@@ -477,18 +350,14 @@
 
     <section id="kontakt" style="text-align: center;">
         <h2>Napisz do mnie</h2>
-        <p class="section-subtitle">Masz plik do wyceny? Wyślij go na maila.</p>
-        
+        <p class="section-subtitle">Prześlij projekt do darmowej wyceny.</p>
         <div style="background: #eff6ff; display: inline-block; padding: 2rem 4rem; border-radius: 20px; border: 1px solid #dbeafe;">
-            <p style="font-size: 1.1rem; color: var(--gray);">Mój adres e-mail:</p>
-            <a href="mailto:dgarbicz@gmail.com" style="font-size: 1.5rem; color: var(--primary); font-weight: bold; text-decoration: none;">
-                dgarbicz@gmail.com
-            </a>
+            <a href="mailto:dgarbicz@gmail.com" style="font-size: 1.5rem; color: var(--primary); font-weight: bold; text-decoration: none;">dgarbicz@gmail.com</a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Dominik Garbicz - Usługi Druku 3D. <br>Powered by GitHub Pages.</p>
+        <p>&copy; 2026 3D Make - Dominik Garbicz. Wszystkie prawa zastrzeżone.</p>
     </footer>
 
     <script>
@@ -496,22 +365,10 @@
             const weight = parseFloat(document.getElementById('material-weight').value);
             const time = parseFloat(document.getElementById('print-time').value);
             const materialPricePerKg = parseFloat(document.getElementById('material-type').value);
-
-            if (isNaN(weight) || isNaN(time)) {
-                document.getElementById('result').innerText = "???";
-                return;
-            }
-
-            // --- LOGIKA CENOWA ---
+            if (isNaN(weight) || isNaN(time)) { document.getElementById('result').innerText = "???"; return; }
             const materialCost = (weight / 1000) * materialPricePerKg;
-            const hourlyRate = 15; // PLN za godzinę
-            
-            // Wzór: Materiał + Praca maszyny + Start(10zł) + Marża
-            let totalCost = (materialCost + (time * hourlyRate) + 10) * 1.2;
-
-            // Minimalna cena zamówienia (opcjonalnie)
+            let totalCost = (materialCost + (time * 15) + 10) * 1.2;
             if (totalCost < 20) totalCost = 20;
-
             document.getElementById('result').innerText = totalCost.toFixed(2) + " PLN";
         }
     </script>
