@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usługi Druku 3D i Projektowanie</title>
+    <style>
+        /* --- STYLE CSS --- */
+        :root {
+            --primary: #2563eb; /* Niebieski akcent */
+            --dark: #1e293b;    /* Ciemne tło */
+            --light: #f8fafc;   /* Jasne tło */
+            --text-main: #334155;
+            --text-light: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--light);
+        }
+
+        /* Nawigacja */
+        nav {
+            background-color: var(--dark);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Sekcje ogólne */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            font-size: 2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto 0;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.8)), 
+                        url('https://images.unsplash.com/photo-1615840287214-7ff58ee0489b?auto=format&fit=crop&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* Oferta */
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .offer-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .offer-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-img-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        /* Jeśli masz zdjęcia, podmień diva powyżej na <img> */
+        /* img { width: 100%; height: auto; } */
+
+        .portfolio-desc {
+            padding: 1rem;
+        }
+
+        /* Kalkulator */
+        .calculator-section {
+            background-color: #e2e8f0;
+            border-radius: 15px;
+            padding: 3rem;
+        }
+
+        .calc-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button.calc-btn {
+            width: 100%;
+            background: var(--dark);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        button.calc-btn:hover {
+            background-color: #334155;
+        }
+
+        #result {
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Kontakt */
+        .contact {
+            text-align: center;
+            background: var(--dark);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0f172a;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive menu - uproszczone dla mobile */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">3D Maker</a>
+        <ul>
+            <li><a href="#oferta">Oferta</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#kalkulator">Kalkulator</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Profesjonalny Druk 3D i Projektowanie</h1>
+        <p>Przekształcam Twoje pomysły w rzeczywiste obiekty. Szybka realizacja i precyzja.</p>
+        <a href="#kalkulator" class="btn">Wyceń projekt</a>
+    </header>
+
+    <section id="omnie">
+        <h2>O mnie</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+            Jestem pasjonatem technologii przyrostowych. Specjalizuję się w druku 3D w technologii FDM. 
+            Oferuję kompleksowe usługi: od pomysłu, przez modelowanie CAD, aż po gotowy wydruk. 
+            Niezależnie od tego, czy potrzebujesz części zamiennej, prototypu czy gotowej figurki - pomogę Ci to zrealizować.
+        </p>
+    </section>
+
+    <section id="oferta">
+        <h2>Oferta</h2>
+        <div class="offer-grid">
+            <div class="offer-card">
+                <h3>Druk z gotowych plików</h3>
+                <p>Masz plik .STL lub .OBJ z Internetu (np. Thingiverse, Printables)? Prześlij go do mnie, a ja dobiorę parametry i wydrukuję go dla Ciebie.</p>
+            </div>
+            <div class="offer-card">
+                <h3>Projektowanie 3D (CAD)</h3>
+                <p>Potrzebujesz części, której nie można kupić? Zaprojektuję model na podstawie Twojego rysunku technicznego, szkicu lub uszkodzonego elementu.</p>
+            </div>
+            <div class="offer-card">
+                <h3>Prototypowanie i Serie</h3>
+                <p>Szybkie prototypowanie dla inżynierów oraz małoseryjna produkcja elementów z tworzyw takich jak PLA, PETG czy ABS.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2>Moje Realizacje</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Przykłady projektów, które do tej pory zrealizowałem:</p>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-img-placeholder">Zdjęcie Projektu 1</div>
+                <div class="portfolio-desc">
+                    <h4>Uchwyt do narzędzi</h4>
+                    <p>Materiał: PETG. Zaprojektowany od zera.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-img-placeholder">Zdjęcie Projektu 2</div>
+                <div class="portfolio-desc">
+                    <h4>Figurka kolekcjonerska</h4>
+                    <p>Materiał: PLA Silk. Druk z gotowego pliku.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-img-placeholder">Zdjęcie Projektu 3</div>
+                <div class="portfolio-desc">
+                    <h4>Część zamienna AGD</h4>
+                    <p>Materiał: ABS. Odtworzenie na podstawie zniszczonej części.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kalkulator" class="calculator-section">
+        <h2>Szybka Wycena Druku</h2>
+        <div class="calc-container">
+            <div class="form-group">
+                <label for="material-weight">Waga wydruku (gramy):</label>
+                <input type="number" id="material-weight" placeholder="np. 50">
+            </div>
+            
+            <div class="form-group">
+                <label for="print-time">Czas druku (godziny):</label>
+                <input type="number" id="print-time" placeholder="np. 4">
+            </div>
+
+            <div class="form-group">
+                <label for="material-type">Rodzaj materiału:</label>
+                <select id="material-type" style="width: 100%; padding: 10px; border-radius: 5px;">
+                    <option value="80">PLA (Standard)</option>
+                    <option value="90">PETG (Wytrzymały)</option>
+                    <option value="120">TPU (Elastyczny)</option>
+                </select>
+            </div>
+
+            <button class="calc-btn" onclick="calculatePrice()">Oblicz szacunkowy koszt</button>
+            <div id="result"></div>
+            <p style="font-size: 0.8rem; color: #666; margin-top: 10px; text-align: center;">
+                *Cena jest szacunkowa i zależy od stopnia skomplikowania modelu oraz post-processingu.
+            </p>
+        </div>
+    </section>
+
+    <section id="kontakt" class="contact">
+        <h2>Skontaktuj się</h2>
+        <p>Masz pytania lub plik do wyceny?</p>
+        <p style="font-size: 1.2rem; margin-top: 1rem;">📧 twoj.email@przyklad.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Twoje Imię / Nazwa Firmy. Wszystkie prawa zastrzeżone.</p>
+    </footer>
+
+    <script>
+        /* --- SKRYPT JS --- */
+        function calculatePrice() {
+            // Pobieranie wartości
+            const weight = parseFloat(document.getElementById('material-weight').value);
+            const time = parseFloat(document.getElementById('print-time').value);
+            const materialPricePerKg = parseFloat(document.getElementById('material-type').value);
+
+            // Walidacja
+            if (isNaN(weight) || isNaN(time)) {
+                document.getElementById('result').innerText = "Proszę podać poprawne liczby.";
+                return;
+            }
+
+            // --- LOGIKA KALKULATORA ---
+            // 1. Koszt materiału: (waga / 1000) * cena za kg
+            const materialCost = (weight / 1000) * materialPricePerKg;
+
+            // 2. Koszt operacyjny (prąd + amortyzacja + czas pracy maszyny)
+            // Przyjmijmy stawkę np. 15 PLN za godzinę pracy drukarki
+            const hourlyRate = 15; 
+            const operationalCost = time * hourlyRate;
+
+            // 3. Narzut / Zysk (np. 1.5x kosztów lub stała opłata startowa)
+            // Tutaj prosty model: suma kosztów + marża 30% + 10zł "za start"
+            let totalCost = (materialCost + operationalCost) * 1.3 + 10;
+
+            // Zaokrąglenie do 2 miejsc po przecinku
+            totalCost = Math.round(totalCost * 100) / 100;
+
+            document.getElementById('result').innerText = `Szacunkowy koszt: ${totalCost} PLN`;
+        }
+    </script>
+</body>
+</html>
