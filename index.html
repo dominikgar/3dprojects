@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Make - Profesjonalny Druk 3D i Projektowanie</title>
+    <title>3D Make - Dominik Garbicz - Druk 3D i Projektowanie</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -85,7 +85,7 @@
         .section-subtitle {
             text-align: center;
             color: var(--gray);
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -115,7 +115,7 @@
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            min-height: 80vh;
+            min-height: 70vh;
         }
 
         .hero-text { flex: 1; padding-right: 2rem; }
@@ -132,7 +132,6 @@
             font-size: 1.2rem;
             color: var(--gray);
             margin-bottom: 2rem;
-            max-width: 500px;
         }
 
         .hero-image { flex: 1; display: flex; justify-content: center; }
@@ -146,12 +145,12 @@
             box-shadow: var(--shadow);
             position: relative;
         }
-        
+
         .printer-mockup::before {
             content: '';
             position: absolute;
-            top: -20px;
-            right: -20px;
+            top: -15px;
+            right: -15px;
             width: 100%;
             height: 100%;
             border: 2px solid var(--primary);
@@ -172,11 +171,8 @@
             padding: 2.5rem;
             border-radius: 20px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s;
             border: 1px solid #e2e8f0;
         }
-
-        .offer-card:hover { transform: translateY(-5px); border-color: var(--primary); }
 
         .portfolio-grid {
             display: grid;
@@ -189,16 +185,12 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: transform 0.3s;
         }
-
-        .portfolio-item:hover { transform: translateY(-5px); }
 
         .portfolio-img {
             width: 100%;
             height: 300px;
             object-fit: cover;
-            display: block;
         }
 
         .portfolio-desc { padding: 1.5rem; }
@@ -221,12 +213,10 @@
             margin: 2rem auto;
             max-width: 1000px;
             padding: 4rem 2rem;
-            text-align: center;
         }
 
         .calc-container {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 20px;
             max-width: 500px;
@@ -237,29 +227,9 @@
         .calc-input {
             width: 100%;
             padding: 12px;
-            border: none;
             border-radius: 8px;
-            background: rgba(255,255,255,0.9);
+            border: none;
             margin-bottom: 1.5rem;
-        }
-
-        button.calc-btn {
-            width: 100%;
-            background: var(--primary);
-            color: white;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        #result {
-            margin-top: 1.5rem;
-            font-size: 1.8rem;
-            text-align: center;
-            font-weight: 800;
-            color: var(--primary);
         }
 
         footer {
@@ -273,7 +243,6 @@
         @media (max-width: 768px) {
             .hero { flex-direction: column-reverse; text-align: center; }
             .hero h1 { font-size: 2.5rem; }
-            nav { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
@@ -282,10 +251,10 @@
     <nav>
         <a href="#" class="logo">3D<span> Make</span></a>
         <ul>
+            <li><a href="#omnie">O mnie</a></li>
             <li><a href="#oferta">Oferta</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#kalkulator">Wycena</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
         </ul>
     </nav>
 
@@ -300,57 +269,82 @@
         </div>
     </header>
 
+    <section id="omnie">
+        <h2>Od pasji do tworzenia</h2>
+        <p class="section-subtitle">Nazywam się Dominik Garbicz i przekształcam cyfrowe wizje w rzeczywiste przedmioty.</p>
+        <div style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: var(--gray); text-align: justify;">
+            <p>W <strong>3D Make</strong> łączę technologiczną precyzję z pasją do rozwiązywania problemów. Moja przygoda z drukiem 3D narodziła się z chęci tworzenia rzeczy, których nie można kupić w zwykłym sklepie. Dziś pomagam innym realizować ich projekty – od prostych gadżetów, przez skomplikowane części zamienne, aż po prototypy inżynieryjne.</p>
+            <br>
+            <p>Pracuję na nowoczesnej drukarce <strong>Bambu Lab A1</strong>, co pozwala mi zagwarantować nie tylko wysoką dokładność, ale również krótki czas realizacji. Oferuję również wsparcie w zakresie projektowania CAD, pomagając dopracować Twój pomysł tak, aby finalny produkt był funkcjonalny i wytrzymały.</p>
+        </div>
+    </section>
+
+    <div class="bg-light">
+        <section id="oferta">
+            <h2>Co oferuję?</h2>
+            <p class="section-subtitle">Kompleksowe usługi druku 3D w technologii FDM.</p>
+            <div class="offer-grid">
+                <div class="offer-card">
+                    <h3 style="color:var(--primary); margin-bottom:1rem;">Druk z plików</h3>
+                    <p>Realizacja wydruków z formatów .STL, .OBJ, .3MF. Dobór optymalnych parametrów dla każdego modelu.</p>
+                </div>
+                <div class="offer-card">
+                    <h3 style="color:var(--primary); margin-bottom:1rem;">Projektowanie CAD</h3>
+                    <p>Tworzenie modeli 3D na podstawie szkiców, wymiarów lub uszkodzonych elementów maszyn i urządzeń.</p>
+                </div>
+                <div class="offer-card">
+                    <h3 style="color:var(--primary); margin-bottom:1rem;">Materiały</h3>
+                    <p>Drukuję z wytrzymałych i funkcjonalnych tworzyw: <strong>PLA, PETG, PETG+ oraz elastycznego TPU</strong>.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <section id="portfolio">
         <h2>Moje Realizacje</h2>
-        <p class="section-subtitle">Zobacz przykładowe projekty wykonane dla moich klientów.</p>
-        
         <div class="portfolio-grid">
             <div class="portfolio-item">
                 <img src="haki.jpeg" alt="Haki i uchwyty 3D" class="portfolio-img">
                 <div class="portfolio-desc">
-                    <span class="tag">PETG / PETG+</span>
-                    <h4>Zestaw uchwytów technicznych</h4>
-                    <p>Wytrzymałe elementy montażowe o wysokiej odporności mechanicznej.</p>
+                    <span class="tag">PETG+</span>
+                    <h4>Uchwyty techniczne</h4>
+                    <p>Wytrzymałe elementy montażowe zaprojektowane do pracy pod obciążeniem.</p>
                 </div>
             </div>
-
             <div class="portfolio-item">
-                <div style="height:300px; background:#ddd; display:flex; align-items:center; justify-content:center;">Miejsce na Twoje zdjęcie</div>
+                <div style="height:300px; background:#ddd; display:flex; align-items:center; justify-content:center;">Miejsce na kolejne zdjęcie</div>
                 <div class="portfolio-desc">
-                    <span class="tag">PLA</span>
-                    <h4>Model prototypowy</h4>
-                    <p>Szybki wydruk koncepcyjny o wysokiej precyzji wymiarowej.</p>
+                    <span class="tag">TPU</span>
+                    <h4>Elementy elastyczne</h4>
+                    <p>Wydruki gumopodobne o wysokiej odporności na ścieranie i uderzenia.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <div style="padding: 0 1rem;">
-        <section id="kalkulator" class="calculator-section">
-            <h2 style="color:white;">Szybka Wycena</h2>
+        <section id="kalkulator" class="calculator-section" style="text-align:center;">
+            <h2 style="color:white;">Wycena wstępna</h2>
             <div class="calc-container">
-                <label style="color:#cbd5e1; font-size:0.9rem;">Waga wydruku (gramy):</label>
-                <input type="number" id="material-weight" class="calc-input" placeholder="np. 50">
-                
-                <label style="color:#cbd5e1; font-size:0.9rem;">Czas druku (godziny):</label>
-                <input type="number" id="print-time" class="calc-input" placeholder="np. 4">
-
+                <label style="color:#cbd5e1; font-size:0.9rem;">Waga (gramy):</label>
+                <input type="number" id="weight" class="calc-input" placeholder="np. 50">
+                <label style="color:#cbd5e1; font-size:0.9rem;">Czas (godziny):</label>
+                <input type="number" id="time" class="calc-input" placeholder="np. 4">
                 <label style="color:#cbd5e1; font-size:0.9rem;">Materiał:</label>
-                <select id="material-type" class="calc-input">
+                <select id="mat" class="calc-input">
                     <option value="80">PLA (Standard)</option>
                     <option value="90">PETG / PETG+ (Wytrzymały)</option>
                     <option value="120">TPU (Elastyczny)</option>
                 </select>
-
-                <button class="calc-btn" onclick="calculatePrice()">Oblicz Koszt</button>
-                <div id="result">0.00 PLN</div>
+                <button class="btn" style="width:100%;" onclick="calc()">Oblicz koszt</button>
+                <div id="res" style="margin-top:1.5rem; font-size:1.8rem; font-weight:800; color:var(--primary); text-align:center;">0.00 PLN</div>
             </div>
         </section>
     </div>
 
-    <section id="kontakt" style="text-align: center;">
+    <section id="kontakt" style="text-align:center;">
         <h2>Napisz do mnie</h2>
-        <p class="section-subtitle">Prześlij projekt do darmowej wyceny.</p>
+        <p class="section-subtitle">Chętnie odpowiem na Twoje pytania i pomogę w realizacji projektu.</p>
         <div style="background: #eff6ff; display: inline-block; padding: 2rem 4rem; border-radius: 20px; border: 1px solid #dbeafe;">
             <a href="mailto:dgarbicz@gmail.com" style="font-size: 1.5rem; color: var(--primary); font-weight: bold; text-decoration: none;">dgarbicz@gmail.com</a>
         </div>
@@ -361,15 +355,13 @@
     </footer>
 
     <script>
-        function calculatePrice() {
-            const weight = parseFloat(document.getElementById('material-weight').value);
-            const time = parseFloat(document.getElementById('print-time').value);
-            const materialPricePerKg = parseFloat(document.getElementById('material-type').value);
-            if (isNaN(weight) || isNaN(time)) { document.getElementById('result').innerText = "???"; return; }
-            const materialCost = (weight / 1000) * materialPricePerKg;
-            let totalCost = (materialCost + (time * 15) + 10) * 1.2;
-            if (totalCost < 20) totalCost = 20;
-            document.getElementById('result').innerText = totalCost.toFixed(2) + " PLN";
+        function calc() {
+            const w = parseFloat(document.getElementById('weight').value);
+            const t = parseFloat(document.getElementById('time').value);
+            const m = parseFloat(document.getElementById('mat').value);
+            if (isNaN(w) || isNaN(t)) return;
+            let cost = ((w/1000)*m + t*15 + 10) * 1.2;
+            document.getElementById('res').innerText = Math.max(cost, 20).toFixed(2) + " PLN";
         }
     </script>
 </body>
