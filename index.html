@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://www.3dmake.pl/">
     <meta property="og:title" content="3D Make - Twoje pomysły, wydrukowane.">
     <meta property="og:description" content="Profesjonalny druk 3D i projektowanie. Sprawdź szybką wycenę online!">
-    <meta property="og:image" content="drukarka.jpg">
+    <meta property="og:image" content="drukarka.png">
 
     <!-- Czcionka Inter dla nowoczesnego wyglądu -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -222,10 +222,25 @@
             border-radius: 20px;
             box-shadow: var(--shadow);
             border: 1px solid #e2e8f0;
-            transition: border-color 0.3s;
+            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
-        .offer-card:hover { border-color: var(--primary); }
+        .offer-card:hover { 
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* Styl nowych ikon SVG */
+        .offer-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            stroke-width: 1.5;
+        }
 
         /* --- PORTFOLIO --- */
         .portfolio-grid {
@@ -454,18 +469,56 @@
             <h2>Kompleksowe Usługi</h2>
             <p class="section-subtitle">Niezależnie od skali projektu, zapewniam profesjonalne podejście.</p>
             <div class="offer-grid">
+                
+                <!-- Karta 1: Druk z plików -->
                 <div class="offer-card">
-                    <h3 style="color:var(--primary); margin-bottom:1rem;">📂 Druk z plików</h3>
+                    <!-- Ikona SVG: Drukarka 3D / Warstwy (Czytelna) -->
+                    <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                    <h3 style="color:var(--primary); margin-bottom:1rem;">Druk z plików</h3>
                     <p>Realizacja wydruków z formatów .STL, .OBJ, .3MF. Dobór optymalnych parametrów wypełnienia i warstw dla każdego modelu.</p>
                 </div>
+
+                <!-- Karta 2: Projektowanie CAD -->
                 <div class="offer-card">
-                    <h3 style="color:var(--primary); margin-bottom:1rem;">🛠️ Projektowanie CAD</h3>
-                    <p>Tworzenie modeli 3D na podstawie szkiców, wymiarów lub uszkodzonych elementów maszyn i urządzeń.</p>
+                    <!-- Ikona SVG: Cyrkiel kreślarski -->
+                    <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="5" r="2"></circle>
+                        <path d="M12 7v5"></path>
+                        <line x1="12" y1="12" x2="19" y2="20"></line>
+                        <line x1="12" y1="12" x2="5" y2="20"></line>
+                    </svg>
+                    <h3 style="color:var(--primary); margin-bottom:1rem;">Projektowanie CAD</h3>
+                    <p>Kompleksowe projektowanie modeli 3D od podstaw. Tworzenie części zamiennych na podstawie uszkodzonych elementów lub szkiców.</p>
                 </div>
+
+                <!-- Karta 3: Materiały -->
                 <div class="offer-card">
-                    <h3 style="color:var(--primary); margin-bottom:1rem;">🧪 Specjalistyczne Materiały</h3>
+                    <!-- Ikona SVG: Sześciokąt / Struktura chemiczna -->
+                    <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                         <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <h3 style="color:var(--primary); margin-bottom:1rem;">Materiały Specjalistyczne</h3>
                     <p>Praca z szeroką gamą filamentów: <strong>PLA, PETG, PETG+</strong> oraz wytrzymałym i elastycznym <strong>TPU</strong>.</p>
                 </div>
+
+                <!-- Karta 4: Wysyłka i Czas -->
+                <div class="offer-card">
+                    <!-- Ikona SVG: Ciężarówka -->
+                    <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                    <h3 style="color:var(--primary); margin-bottom:1rem;">Wysyłka i Czas</h3>
+                    <p>Szybka realizacja (zazwyczaj 2-3 dni robocze). Bezpieczna wysyłka <strong>Paczkomatem InPost</strong> lub kurierem.</p>
+                </div>
+
             </div>
         </section>
     </div>
