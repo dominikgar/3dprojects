@@ -10,13 +10,17 @@
     <meta name="keywords" content="druk 3d, projektowanie cad, drukowanie 3d, bambu lab, pla, petg, tpu, prototypowanie, części zamienne, wycena druku 3d">
     <meta name="author" content="Dominik Garbicz">
     
+    <!-- Canonical Tag (Rozwiązanie problemu "Page with redirect") -->
+    <!-- Mówimy Google'owi: To jest główny adres, indeksuj ten! -->
+    <link rel="canonical" href="https://3dmake.pl/">
+    <meta name="robots" content="index, follow">
+    
     <!-- Open Graph / Facebook / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.3dmake.pl/">
+    <meta property="og:url" content="https://3dmake.pl/">
     <meta property="og:title" content="3D Make - Twoje pomysły, wydrukowane.">
     <meta property="og:description" content="Profesjonalny druk 3D i projektowanie. Sprawdź szybką wycenę online!">
-    <!-- Zaktualizowano rozszerzenie zdjęcia -->
-    <meta property="og:image" content="drukarka.jpg">
+    <meta property="og:image" content="https://3dmake.pl/drukarka.jpg">
 
     <!-- Czcionka Inter dla nowoczesnego wyglądu -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -180,7 +184,6 @@
             max-width: 500px;
             height: 400px;
             background-color: #e2e8f0;
-            /* Zaktualizowano rozszerzenie zdjęcia na .jpg */
             background-image: url('drukarka.jpg');
             background-position: center;
             background-size: cover;
@@ -211,7 +214,6 @@
 
         .offer-grid {
             display: grid;
-            /* Zmieniono minmax na 280px dla lepszego dopasowania na mobile */
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             width: 100%;
@@ -234,7 +236,6 @@
             transform: translateY(-5px);
         }
 
-        /* Styl nowych ikon SVG */
         .offer-icon {
             width: 48px;
             height: 48px;
@@ -358,63 +359,29 @@
 
         /* --- RESPONSYWNOŚĆ (MOBILE) --- */
         @media (max-width: 768px) {
-            /* Nawigacja */
             .menu-toggle { display: flex; }
-            
             nav ul {
                 position: absolute;
-                top: 60px; /* Wysokość navbara */
-                left: 0;
-                width: 100%;
+                top: 60px; left: 0; width: 100%;
                 background: white;
                 flex-direction: column;
                 align-items: center;
                 gap: 0;
                 border-bottom: 1px solid #e2e8f0;
                 box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-                
-                /* Ukrywanie menu (animacja) */
                 max-height: 0;
                 overflow: hidden;
                 transition: max-height 0.3s ease-in-out;
             }
-
-            nav ul.active {
-                max-height: 300px; /* Wystarczająco dużo, aby pokazać linki */
-            }
-
-            nav ul li {
-                width: 100%;
-                text-align: center;
-            }
-
-            nav ul li a {
-                display: block;
-                padding: 1.5rem;
-                width: 100%;
-            }
-
-            /* Sekcje i Hero */
+            nav ul.active { max-height: 300px; }
+            nav ul li { width: 100%; text-align: center; }
+            nav ul li a { display: block; padding: 1.5rem; width: 100%; }
             section { padding: 3rem 1.5rem; }
-            
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding-top: 2rem;
-                min-height: auto;
-            }
-
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 2rem; min-height: auto; }
             .hero h1 { font-size: 2.2rem; margin-top: 2rem; }
             .hero-text { padding-right: 0; }
-            
-            /* Drukarka - dopasowanie wysokości na mobile */
             .printer-mockup { height: 280px; }
-            
-            /* Kalkulator */
-            .calculator-section {
-                padding: 2rem 1rem;
-                border-radius: 15px;
-            }
+            .calculator-section { padding: 2rem 1rem; border-radius: 15px; }
             .calc-container { padding: 1.5rem; }
         }
     </style>
@@ -423,14 +390,11 @@
 
     <nav>
         <a href="#" class="logo">3D<span> Make</span></a>
-        
-        <!-- Przycisk Hamburgera -->
         <div class="menu-toggle" onclick="toggleMenu()">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
-
         <ul id="nav-menu">
             <li><a href="#omnie" onclick="toggleMenu()">O mnie</a></li>
             <li><a href="#oferta" onclick="toggleMenu()">Oferta</a></li>
@@ -447,13 +411,11 @@
         </div>
         <div class="hero-image">
             <div class="printer-mockup">
-                <!-- Fallback text, jeśli obrazek się nie załaduje -->
                 <span style="padding: 20px; display:none;">Bambu Lab A1</span>
             </div>
         </div>
     </header>
 
-    <!-- Sekcja O mnie -->
     <section id="omnie">
         <h2>O pasji do tworzenia</h2>
         <p class="section-subtitle">Nazywam się Dominik Garbicz i przekształcam cyfrowe wizje w rzeczywiste przedmioty.</p>
@@ -464,16 +426,12 @@
         </div>
     </section>
 
-    <!-- Oferta -->
     <div class="bg-light">
         <section id="oferta">
             <h2>Kompleksowe Usługi</h2>
             <p class="section-subtitle">Niezależnie od skali projektu, zapewniam profesjonalne podejście.</p>
             <div class="offer-grid">
-                
-                <!-- Karta 1: Druk z plików -->
                 <div class="offer-card">
-                    <!-- Ikona SVG: Drukarka 3D / Warstwy (Czytelna) -->
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
                         <polyline points="2 17 12 22 22 17"></polyline>
@@ -483,9 +441,7 @@
                     <p>Realizacja wydruków z formatów .STL, .OBJ, .3MF. Dobór optymalnych parametrów wypełnienia i warstw dla każdego modelu.</p>
                 </div>
 
-                <!-- Karta 2: Projektowanie CAD -->
                 <div class="offer-card">
-                    <!-- Ikona SVG: Cyrkiel kreślarski -->
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="5" r="2"></circle>
                         <path d="M12 7v5"></path>
@@ -496,9 +452,7 @@
                     <p>Kompleksowe projektowanie modeli 3D od podstaw. Tworzenie części zamiennych na podstawie uszkodzonych elementów lub szkiców.</p>
                 </div>
 
-                <!-- Karta 3: Materiały -->
                 <div class="offer-card">
-                    <!-- Ikona SVG: Sześciokąt / Struktura chemiczna -->
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
                          <circle cx="12" cy="12" r="3"></circle>
@@ -507,9 +461,7 @@
                     <p>Praca z szeroką gamą filamentów: <strong>PLA, PETG, PETG+</strong> oraz wytrzymałym i elastycznym <strong>TPU</strong>.</p>
                 </div>
 
-                <!-- Karta 4: Wysyłka i Czas -->
                 <div class="offer-card">
-                    <!-- Ikona SVG: Ciężarówka -->
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="1" y="3" width="15" height="13"></rect>
                         <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
@@ -519,19 +471,16 @@
                     <h3 style="color:var(--primary); margin-bottom:1rem;">Wysyłka i Czas</h3>
                     <p>Szybka realizacja (zazwyczaj 2-3 dni robocze). Bezpieczna wysyłka <strong>Paczkomatem InPost</strong> lub kurierem.</p>
                 </div>
-
             </div>
         </section>
     </div>
 
-    <!-- Portfolio -->
     <section id="portfolio">
         <h2>Moje Realizacje</h2>
         <p class="section-subtitle">Przykłady projektów wykonanych dla moich klientów.</p>
         <div class="portfolio-grid">
             <div class="portfolio-item">
                 <div class="portfolio-img-container">
-                    <!-- Obrazek haki.jpeg -->
                     <img src="haki.jpeg" alt="Haki i uchwyty 3D" class="portfolio-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'height:100%; display:flex; align-items:center; justify-content:center; color:#94a3b8;\'>[Zdjęcie haki.jpeg]</div>'">
                 </div>
                 <div class="portfolio-desc">
@@ -563,12 +512,10 @@
         </div>
     </section>
 
-    <!-- Kalkulator -->
     <div style="padding: 0 1rem;">
         <section id="kalkulator" class="calculator-section" style="text-align:center;">
             <h2 style="color:white; margin-bottom: 0.5rem;">Szybka Wycena</h2>
             <p style="color:#94a3b8; margin-bottom: 3rem;">Sprawdź szacunkowy koszt na podstawie wymiarów.</p>
-            
             <div class="calc-container">
                 <label class="calc-label">Wymiary modelu (mm):</label>
                 <div class="dims-wrapper">
@@ -576,33 +523,25 @@
                     <input type="number" id="dim-y" class="calc-input" placeholder="Szer.">
                     <input type="number" id="dim-z" class="calc-input" placeholder="Wys.">
                 </div>
-                
                 <label class="calc-label">Rodzaj materiału:</label>
                 <select id="mat" class="calc-input">
-                    <!-- Value to mnożnik ceny -->
                     <option value="1">PLA (Standard)</option>
                     <option value="1.2">PETG (Wytrzymały)</option>
                     <option value="1.5">TPU (Elastyczny)</option>
                 </select>
-                
                 <button class="btn" style="width:100%;" onclick="calc()">Oblicz szacunek</button>
                 <div id="res">0.00 PLN</div>
-                <p class="result-subtext">
-                    *Cena dotyczy modelu o standardowym wypełnieniu (20%). Obiekty pełne (100% wypełnienia) będą droższe. To jest wycena automatyczna - ostateczną cenę potwierdzę po otrzymaniu pliku.
-                </p>
+                <p class="result-subtext">*Cena dotyczy modelu o standardowym wypełnieniu (20%). Obiekty pełne (100% wypełnienia) będą droższe. To jest wycena automatyczna - ostateczną cenę potwierdzę po otrzymaniu pliku.</p>
             </div>
         </section>
     </div>
 
-    <!-- Kontakt -->
     <section id="kontakt" style="text-align:center;">
         <h2>Zapraszam do kontaktu</h2>
         <p class="section-subtitle">Masz gotowy plik lub tylko zarys pomysłu? Napisz!</p>
         <div style="background: #eff6ff; display: inline-block; padding: 2.5rem 5rem; border-radius: 25px; border: 1px solid #dbeafe;">
             <p style="color: #64748b; margin-bottom: 0.5rem;">Adres e-mail:</p>
-            <a href="mailto:dgarbicz@gmail.com" style="font-size: 1.8rem; color: var(--primary); font-weight: 800; text-decoration: none; word-break: break-all;">
-                dgarbicz@gmail.com
-            </a>
+            <a href="mailto:dgarbicz@gmail.com" style="font-size: 1.8rem; color: var(--primary); font-weight: 800; text-decoration: none; word-break: break-all;">dgarbicz@gmail.com</a>
         </div>
     </section>
 
@@ -612,41 +551,21 @@
 
     <script>
         function calc() {
-            // Pobierz wymiary
             const x = parseFloat(document.getElementById('dim-x').value);
             const y = parseFloat(document.getElementById('dim-y').value);
             const z = parseFloat(document.getElementById('dim-z').value);
             const matMultiplier = parseFloat(document.getElementById('mat').value);
             
-            if (isNaN(x) || isNaN(y) || isNaN(z)) {
-                document.getElementById('res').innerText = "Wpisz wymiary";
-                return;
-            }
+            if (isNaN(x) || isNaN(y) || isNaN(z)) { document.getElementById('res').innerText = "Wpisz wymiary"; return; }
             
-            // 1. Oblicz objętość pudełka w cm3 (mm * mm * mm / 1000)
             const boxVolume = (x * y * z) / 1000;
-            
-            // 2. Szacowanie:
-            // Zakładamy, że typowy obiekt zajmuje około 25% objętości swojego "bounding boxa" 
-            // (biorąc pod uwagę, że nie jest klockiem i ma wypełnienie np. 20%).
-            // To jest heurystyka, aby dać bezpieczną, ale nie kosmiczną cenę.
             const estimatedVolume = boxVolume * 0.25;
-
-            // 3. Waga w gramach (gęstość PLA ~1.24g/cm3)
             const estimatedWeight = estimatedVolume * 1.24;
-            
-            // 4. Cena:
-            // Przyjmijmy stawkę np. 0.80 PLN za gram (zawiera materiał, prąd, amortyzację)
-            // + opłata startowa 20 PLN.
             let cost = (estimatedWeight * 0.80 * matMultiplier) + 20;
-            
-            // Minimalna cena
             if (cost < 30) cost = 30;
-            
             document.getElementById('res').innerText = "~" + Math.round(cost) + " PLN";
         }
 
-        // --- SKRYPT HAMBURGER MENU ---
         function toggleMenu() {
             const menu = document.getElementById('nav-menu');
             menu.classList.toggle('active');
