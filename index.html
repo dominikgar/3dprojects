@@ -20,7 +20,7 @@
     <meta property="og:url" content="https://3dmake.pl/">
     <meta property="og:title" content="3D Make - Twoje pomysły, wydrukowane.">
     <meta property="og:description" content="Profesjonalny druk 3D i projektowanie. Sprawdź szybką wycenę online!">
-    <meta property="og:image" content="https://3dmake.pl/drukarka.jpeg">
+    <meta property="og:image" content="https://3dmake.pl/drukarka.jpg">
 
     <!-- Czcionka Inter dla nowoczesnego wyglądu -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -184,7 +184,7 @@
             max-width: 500px;
             height: 400px;
             background-color: #e2e8f0;
-            background-image: url('drukarka.jpeg');
+            background-image: url('drukarka.jpg');
             background-position: center;
             background-size: cover;
             border-radius: 20px;
@@ -390,11 +390,14 @@
 
     <nav>
         <a href="#" class="logo">3D<span> Make</span></a>
+        
+        <!-- Przycisk Hamburgera -->
         <div class="menu-toggle" onclick="toggleMenu()">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
+
         <ul id="nav-menu">
             <li><a href="#omnie" onclick="toggleMenu()">O mnie</a></li>
             <li><a href="#oferta" onclick="toggleMenu()">Oferta</a></li>
@@ -416,6 +419,7 @@
         </div>
     </header>
 
+    <!-- Sekcja O mnie -->
     <section id="omnie">
         <h2>O pasji do tworzenia</h2>
         <p class="section-subtitle">Nazywam się Dominik Garbicz i przekształcam cyfrowe wizje w rzeczywiste przedmioty.</p>
@@ -426,11 +430,14 @@
         </div>
     </section>
 
+    <!-- Oferta -->
     <div class="bg-light">
         <section id="oferta">
             <h2>Kompleksowe Usługi</h2>
             <p class="section-subtitle">Niezależnie od skali projektu, zapewniam profesjonalne podejście.</p>
             <div class="offer-grid">
+                
+                <!-- Karta 1: Druk z plików -->
                 <div class="offer-card">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
@@ -441,6 +448,7 @@
                     <p>Realizacja wydruków z formatów .STL, .OBJ, .3MF. Dobór optymalnych parametrów wypełnienia i warstw dla każdego modelu.</p>
                 </div>
 
+                <!-- Karta 2: Projektowanie CAD -->
                 <div class="offer-card">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="5" r="2"></circle>
@@ -452,6 +460,7 @@
                     <p>Kompleksowe projektowanie modeli 3D od podstaw. Tworzenie części zamiennych na podstawie uszkodzonych elementów lub szkiców.</p>
                 </div>
 
+                <!-- Karta 3: Materiały -->
                 <div class="offer-card">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
@@ -461,6 +470,7 @@
                     <p>Praca z szeroką gamą filamentów: <strong>PLA, PETG, PETG+</strong> oraz wytrzymałym i elastycznym <strong>TPU</strong>.</p>
                 </div>
 
+                <!-- Karta 4: Wysyłka i Czas -->
                 <div class="offer-card">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="1" y="3" width="15" height="13"></rect>
@@ -475,10 +485,13 @@
         </section>
     </div>
 
+    <!-- Portfolio -->
     <section id="portfolio">
         <h2>Moje Realizacje</h2>
         <p class="section-subtitle">Przykłady projektów wykonanych dla moich klientów.</p>
         <div class="portfolio-grid">
+            
+            <!-- Element 1: Haki -->
             <div class="portfolio-item">
                 <div class="portfolio-img-container">
                     <img src="haki.jpeg" alt="Haki i uchwyty 3D" class="portfolio-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'height:100%; display:flex; align-items:center; justify-content:center; color:#94a3b8;\'>[Zdjęcie haki.jpeg]</div>'">
@@ -489,6 +502,8 @@
                     <p>Elementy montażowe zaprojektowane do pracy pod stałym obciążeniem.</p>
                 </div>
             </div>
+
+            <!-- Element 2: Uchwyt -->
             <div class="portfolio-item">
                 <div class="portfolio-img-container">
                     <img src="uchwyt.jpeg" alt="Uchwyty na model montowany na scianę" class="portfolio-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'height:100%; display:flex; align-items:center; justify-content:center; color:#94a3b8;\'>[Zdjęcie uchwyt.jpeg]</div>'">
@@ -499,6 +514,8 @@
                     <p>Wydruki o standardowym i domowym zastosowaniu. Wystarczająco mocne.</p>
                 </div>
             </div>
+
+            <!-- Element 3: Pokrętło -->
             <div class="portfolio-item">
                 <div class="portfolio-img-container">
                     <img src="pokretlo.jpeg" alt="Pokrętło do urządzenia AGD" class="portfolio-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'height:100%; display:flex; align-items:center; justify-content:center; color:#94a3b8;\'>[Zdjęcie pokretlo.jpeg]</div>'">
@@ -509,13 +526,28 @@
                     <p>Precyzyjnie wykonane pokrętło zamienne do sprzętu domowego.</p>
                 </div>
             </div>
+
+            <!-- NOWY Element 4: Figurka -->
+            <div class="portfolio-item">
+                <div class="portfolio-img-container">
+                    <img src="figurka.jpeg" alt="Figurka drukowana w 3D i malowana" class="portfolio-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'height:100%; display:flex; align-items:center; justify-content:center; color:#94a3b8;\'>[Zdjęcie figurka.jpeg]</div>'">
+                </div>
+                <div class="portfolio-desc">
+                    <span class="tag">PLA / Malowanie</span>
+                    <h4>Figurka kolekcjonerska</h4>
+                    <p>Model wydrukowany z dbałością o detale, a następnie ręcznie pomalowany.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
+    <!-- Kalkulator -->
     <div style="padding: 0 1rem;">
         <section id="kalkulator" class="calculator-section" style="text-align:center;">
             <h2 style="color:white; margin-bottom: 0.5rem;">Szybka Wycena</h2>
             <p style="color:#94a3b8; margin-bottom: 3rem;">Sprawdź szacunkowy koszt na podstawie wymiarów.</p>
+            
             <div class="calc-container">
                 <label class="calc-label">Wymiary modelu (mm):</label>
                 <div class="dims-wrapper">
@@ -523,25 +555,33 @@
                     <input type="number" id="dim-y" class="calc-input" placeholder="Szer.">
                     <input type="number" id="dim-z" class="calc-input" placeholder="Wys.">
                 </div>
+                
                 <label class="calc-label">Rodzaj materiału:</label>
                 <select id="mat" class="calc-input">
+                    <!-- Value to mnożnik ceny -->
                     <option value="1">PLA (Standard)</option>
                     <option value="1.2">PETG (Wytrzymały)</option>
                     <option value="1.5">TPU (Elastyczny)</option>
                 </select>
+                
                 <button class="btn" style="width:100%;" onclick="calc()">Oblicz szacunek</button>
                 <div id="res">0.00 PLN</div>
-                <p class="result-subtext">*Cena dotyczy modelu o standardowym wypełnieniu (20%). Obiekty pełne (100% wypełnienia) będą droższe. To jest wycena automatyczna - ostateczną cenę potwierdzę po otrzymaniu pliku.</p>
+                <p class="result-subtext">
+                    *Cena dotyczy modelu o standardowym wypełnieniu (20%). Obiekty pełne (100% wypełnienia) będą droższe. To jest wycena automatyczna - ostateczną cenę potwierdzę po otrzymaniu pliku.
+                </p>
             </div>
         </section>
     </div>
 
+    <!-- Kontakt -->
     <section id="kontakt" style="text-align:center;">
         <h2>Zapraszam do kontaktu</h2>
         <p class="section-subtitle">Masz gotowy plik lub tylko zarys pomysłu? Napisz!</p>
         <div style="background: #eff6ff; display: inline-block; padding: 2.5rem 5rem; border-radius: 25px; border: 1px solid #dbeafe;">
             <p style="color: #64748b; margin-bottom: 0.5rem;">Adres e-mail:</p>
-            <a href="mailto:dgarbicz@gmail.com" style="font-size: 1.8rem; color: var(--primary); font-weight: 800; text-decoration: none; word-break: break-all;">dgarbicz@gmail.com</a>
+            <a href="mailto:dgarbicz@gmail.com" style="font-size: 1.8rem; color: var(--primary); font-weight: 800; text-decoration: none; word-break: break-all;">
+                dgarbicz@gmail.com
+            </a>
         </div>
     </section>
 
@@ -551,21 +591,41 @@
 
     <script>
         function calc() {
+            // Pobierz wymiary
             const x = parseFloat(document.getElementById('dim-x').value);
             const y = parseFloat(document.getElementById('dim-y').value);
             const z = parseFloat(document.getElementById('dim-z').value);
             const matMultiplier = parseFloat(document.getElementById('mat').value);
             
-            if (isNaN(x) || isNaN(y) || isNaN(z)) { document.getElementById('res').innerText = "Wpisz wymiary"; return; }
+            if (isNaN(x) || isNaN(y) || isNaN(z)) {
+                document.getElementById('res').innerText = "Wpisz wymiary";
+                return;
+            }
             
+            // 1. Oblicz objętość pudełka w cm3 (mm * mm * mm / 1000)
             const boxVolume = (x * y * z) / 1000;
+            
+            // 2. Szacowanie:
+            // Zakładamy, że typowy obiekt zajmuje około 25% objętości swojego "bounding boxa" 
+            // (biorąc pod uwagę, że nie jest klockiem i ma wypełnienie np. 20%).
+            // To jest heurystyka, aby dać bezpieczną, ale nie kosmiczną cenę.
             const estimatedVolume = boxVolume * 0.25;
+
+            // 3. Waga w gramach (gęstość PLA ~1.24g/cm3)
             const estimatedWeight = estimatedVolume * 1.24;
+            
+            // 4. Cena:
+            // Przyjmijmy stawkę np. 0.80 PLN za gram (zawiera materiał, prąd, amortyzację)
+            // + opłata startowa 20 PLN.
             let cost = (estimatedWeight * 0.80 * matMultiplier) + 20;
+            
+            // Minimalna cena
             if (cost < 30) cost = 30;
+            
             document.getElementById('res').innerText = "~" + Math.round(cost) + " PLN";
         }
 
+        // --- SKRYPT HAMBURGER MENU ---
         function toggleMenu() {
             const menu = document.getElementById('nav-menu');
             menu.classList.toggle('active');
