@@ -10,23 +10,22 @@
     <meta name="keywords" content="druk 3d, projektowanie cad, drukowanie 3d, bambu lab, pla, petg, tpu, prototypowanie, części zamienne, wycena druku 3d">
     <meta name="author" content="Dominik Garbicz">
     
-    <!-- Canonical Tag (Rozwiązanie problemu "Page with redirect") -->
-    <!-- Mówimy Google'owi: To jest główny adres, indeksuj ten! -->
+    <!-- Canonical Tag -->
     <link rel="canonical" href="https://3dmake.pl/">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Facebook / Social Media -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://3dmake.pl/">
     <meta property="og:title" content="3D Make - Twoje pomysły, wydrukowane.">
     <meta property="og:description" content="Profesjonalny druk 3D i projektowanie. Sprawdź szybką wycenę online!">
     <meta property="og:image" content="https://3dmake.pl/drukarka.jpg">
 
-    <!-- Czcionka Inter dla nowoczesnego wyglądu -->
+    <!-- Czcionka Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #f97316; /* Pomarańczowy akcent */
+            --primary: #f97316;
             --primary-hover: #ea580c;
             --dark: #0f172a;    
             --gray: #64748b;    
@@ -47,7 +46,7 @@
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--white);
-            overflow-x: hidden; /* Zapobiega poziomemu przewijaniu */
+            overflow-x: hidden;
         }
 
         /* --- NAWIGACJA --- */
@@ -68,12 +67,11 @@
             font-size: 1.5rem;
             font-weight: 800;
             text-decoration: none;
-            z-index: 1001; /* Zawsze nad menu mobilnym */
+            z-index: 1001;
         }
 
         nav .logo span { color: var(--primary); }
 
-        /* Menu Desktop */
         nav ul {
             list-style: none;
             display: flex;
@@ -91,7 +89,6 @@
 
         nav a:hover { color: var(--primary); }
 
-        /* Hamburger Icon (Ukryty na desktopie) */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -209,7 +206,7 @@
             z-index: -1;
         }
 
-        /* --- OFERTA & GRID --- */
+        /* --- OFERTA --- */
         .bg-light { background-color: var(--light); width: 100%; }
 
         .offer-grid {
@@ -264,12 +261,40 @@
             height: 300px;
             background-color: #f1f5f9;
             overflow: hidden;
+            position: relative;
+            cursor: pointer; /* Kursor wskazujący na klikalność */
+        }
+        
+        /* Efekt hover na zdjęciu */
+        .portfolio-img-container:hover .portfolio-img {
+            transform: scale(1.05);
+            filter: brightness(0.9);
         }
 
         .portfolio-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        
+        /* Ikonka powiększenia na hover */
+        .portfolio-img-container::after {
+            content: '🔍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .portfolio-img-container:hover::after {
+            opacity: 1;
         }
 
         .portfolio-desc { padding: 1.5rem; }
@@ -357,6 +382,57 @@
             border-top: 1px solid #e2e8f0;
         }
 
+        /* --- MODAL (LIGHTBOX) --- */
+        .modal {
+            display: none; /* Domyślnie ukryty */
+            position: fixed;
+            z-index: 2000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            max-height: 90vh;
+            object-fit: contain; /* Zachowaj proporcje, nie przycinaj */
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--primary);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         /* --- RESPONSYWNOŚĆ (MOBILE) --- */
         @media (max-width: 768px) {
             .menu-toggle { display: flex; }
@@ -383,6 +459,7 @@
             .printer-mockup { height: 280px; }
             .calculator-section { padding: 2rem 1rem; border-radius: 15px; }
             .calc-container { padding: 1.5rem; }
+            .modal-content { width: 95%; } /* Większe zdjęcie na mobile */
         }
     </style>
 </head>
@@ -391,7 +468,6 @@
     <nav>
         <a href="#" class="logo">3D<span> Make</span></a>
         
-        <!-- Przycisk Hamburgera -->
         <div class="menu-toggle" onclick="toggleMenu()">
             <div class="bar"></div>
             <div class="bar"></div>
@@ -437,7 +513,6 @@
             <p class="section-subtitle">Niezależnie od skali projektu, zapewniam profesjonalne podejście.</p>
             <div class="offer-grid">
                 
-                <!-- Karta 1: Druk z plików -->
                 <div class="offer-card">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
@@ -448,7 +523,6 @@
                     <p>Realizacja wydruków z formatów .STL, .OBJ, .3MF. Dobór optymalnych parametrów wypełnienia i warstw dla każdego modelu.</p>
                 </div>
 
-                <!-- Karta 2: Projektowanie CAD -->
                 <div class="offer-card">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="5" r="2"></circle>
@@ -460,7 +534,6 @@
                     <p>Kompleksowe projektowanie modeli 3D od podstaw. Tworzenie części zamiennych na podstawie uszkodzonych elementów lub szkiców.</p>
                 </div>
 
-                <!-- Karta 3: Materiały -->
                 <div class="offer-card">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
@@ -470,7 +543,6 @@
                     <p>Praca z szeroką gamą filamentów: <strong>PLA, PETG, PETG+</strong> oraz wytrzymałym i elastycznym <strong>TPU</strong>.</p>
                 </div>
 
-                <!-- Karta 4: Wysyłka i Czas -->
                 <div class="offer-card">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="1" y="3" width="15" height="13"></rect>
@@ -485,16 +557,15 @@
         </section>
     </div>
 
-    <!-- Portfolio -->
+    <!-- Portfolio z opcją kliknięcia -->
     <section id="portfolio">
         <h2>Moje Realizacje</h2>
         <p class="section-subtitle">Przykłady projektów wykonanych dla moich klientów.</p>
         <div class="portfolio-grid">
             
-            <!-- Element 1: Haki -->
             <div class="portfolio-item">
-                <div class="portfolio-img-container">
-                    <img src="haki.jpeg" alt="Haki i uchwyty 3D" class="portfolio-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'height:100%; display:flex; align-items:center; justify-content:center; color:#94a3b8;\'>[Zdjęcie haki.jpeg]</div>'">
+                <div class="portfolio-img-container" onclick="openModal('haki.jpeg')">
+                    <img src="haki.jpeg" alt="Haki i uchwyty 3D" class="portfolio-img" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
                     <span class="tag">PETG+ / Wytrzymałość</span>
@@ -503,10 +574,9 @@
                 </div>
             </div>
 
-            <!-- Element 2: Uchwyt -->
             <div class="portfolio-item">
-                <div class="portfolio-img-container">
-                    <img src="uchwyt.jpeg" alt="Uchwyty na model montowany na scianę" class="portfolio-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'height:100%; display:flex; align-items:center; justify-content:center; color:#94a3b8;\'>[Zdjęcie uchwyt.jpeg]</div>'">
+                <div class="portfolio-img-container" onclick="openModal('uchwyt.jpeg')">
+                    <img src="uchwyt.jpeg" alt="Uchwyty na model montowany na scianę" class="portfolio-img" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
                     <span class="tag">PLA</span>
@@ -515,10 +585,9 @@
                 </div>
             </div>
 
-            <!-- Element 3: Pokrętło -->
             <div class="portfolio-item">
-                <div class="portfolio-img-container">
-                    <img src="pokretlo.jpeg" alt="Pokrętło do urządzenia AGD" class="portfolio-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'height:100%; display:flex; align-items:center; justify-content:center; color:#94a3b8;\'>[Zdjęcie pokretlo.jpeg]</div>'">
+                <div class="portfolio-img-container" onclick="openModal('pokretlo.jpeg')">
+                    <img src="pokretlo.jpeg" alt="Pokrętło do urządzenia AGD" class="portfolio-img" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
                     <span class="tag">PLA</span>
@@ -527,10 +596,9 @@
                 </div>
             </div>
 
-            <!-- NOWY Element 4: Figurka -->
             <div class="portfolio-item">
-                <div class="portfolio-img-container">
-                    <img src="figurka.jpeg" alt="Figurka drukowana w 3D i malowana" class="portfolio-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'height:100%; display:flex; align-items:center; justify-content:center; color:#94a3b8;\'>[Zdjęcie figurka.jpeg]</div>'">
+                <div class="portfolio-img-container" onclick="openModal('figurka.jpeg')">
+                    <img src="figurka.jpeg" alt="Figurka drukowana w 3D i malowana" class="portfolio-img" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
                     <span class="tag">PLA / Malowanie</span>
@@ -558,7 +626,6 @@
                 
                 <label class="calc-label">Rodzaj materiału:</label>
                 <select id="mat" class="calc-input">
-                    <!-- Value to mnożnik ceny -->
                     <option value="1">PLA (Standard)</option>
                     <option value="1.2">PETG (Wytrzymały)</option>
                     <option value="1.5">TPU (Elastyczny)</option>
@@ -589,9 +656,30 @@
         <p>&copy; 2026 3D Make - Dominik Garbicz. <br> Profesjonalne usługi druku 3D.</p>
     </footer>
 
+    <!-- The Modal (Lightbox) -->
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
     <script>
+        // Modal Logic
+        function openModal(src) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("img01");
+            modal.style.display = "flex"; // Używamy flex do centrowania
+            modal.style.alignItems = "center";
+            modal.style.justifyContent = "center";
+            modalImg.src = src;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        // Kalkulator Logic
         function calc() {
-            // Pobierz wymiary
             const x = parseFloat(document.getElementById('dim-x').value);
             const y = parseFloat(document.getElementById('dim-y').value);
             const z = parseFloat(document.getElementById('dim-z').value);
@@ -602,30 +690,15 @@
                 return;
             }
             
-            // 1. Oblicz objętość pudełka w cm3 (mm * mm * mm / 1000)
             const boxVolume = (x * y * z) / 1000;
-            
-            // 2. Szacowanie:
-            // Zakładamy, że typowy obiekt zajmuje około 25% objętości swojego "bounding boxa" 
-            // (biorąc pod uwagę, że nie jest klockiem i ma wypełnienie np. 20%).
-            // To jest heurystyka, aby dać bezpieczną, ale nie kosmiczną cenę.
             const estimatedVolume = boxVolume * 0.25;
-
-            // 3. Waga w gramach (gęstość PLA ~1.24g/cm3)
             const estimatedWeight = estimatedVolume * 1.24;
-            
-            // 4. Cena:
-            // Przyjmijmy stawkę np. 0.80 PLN za gram (zawiera materiał, prąd, amortyzację)
-            // + opłata startowa 20 PLN.
             let cost = (estimatedWeight * 0.80 * matMultiplier) + 20;
-            
-            // Minimalna cena
             if (cost < 30) cost = 30;
-            
             document.getElementById('res').innerText = "~" + Math.round(cost) + " PLN";
         }
 
-        // --- SKRYPT HAMBURGER MENU ---
+        // Hamburger Menu Logic
         function toggleMenu() {
             const menu = document.getElementById('nav-menu');
             menu.classList.toggle('active');
