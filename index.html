@@ -651,13 +651,15 @@
             <div class="calc-container">
                 <label class="calc-label">Wymiary modelu (mm):</label>
                 <div class="dims-wrapper">
-                    <input type="number" id="dim-x" class="calc-input calc-trigger" placeholder="Długość">
-                    <input type="number" id="dim-y" class="calc-input calc-trigger" placeholder="Szerokość">
-                    <input type="number" id="dim-z" class="calc-input calc-trigger" placeholder="Wysokość">
+                    <!-- Dodano oninput="calc()" dla odświeżania podczas wpisywania -->
+                    <input type="number" id="dim-x" class="calc-input calc-trigger" placeholder="Długość" oninput="calc()">
+                    <input type="number" id="dim-y" class="calc-input calc-trigger" placeholder="Szerokość" oninput="calc()">
+                    <input type="number" id="dim-z" class="calc-input calc-trigger" placeholder="Wysokość" oninput="calc()">
                 </div>
                 
                 <label class="calc-label">Rodzaj materiału:</label>
-                <select id="mat" class="calc-input calc-trigger">
+                <!-- Dodano onchange="calc()" dla odświeżania po zmianie materiału -->
+                <select id="mat" class="calc-input calc-trigger" onchange="calc()">
                     <option value="1">PLA (Standard)</option>
                     <option value="1.2">PETG (Wytrzymały)</option>
                     <option value="1.5">TPU (Elastyczny)</option>
@@ -725,15 +727,55 @@
             const matMultiplier = parseFloat(document.getElementById('mat').value);
             
             if (isNaN(x) || isNaN(y) || isNaN(z)) {
+                document.getElementById('res').style.fontSize = "2.2rem";
                 document.getElementById('res').innerText = "Wpisz wymiary";
                 return;
             }
+
+            if (x <= 0 || y <= 0 || z <= 0) {
+                document.getElementById('res').style.fontSize = "1.8rem";
+                document.getElementById('res').innerText = "Błędne wymiary";
+                return;
+            }
             
+            // Sprawdzenie czy model nie przekracza pola roboczego (Bambu Lab A1: 256x256x256 mm)
+            if (x > 256 || y > 256 || z > 256) {
+                document.getElementById('res').style.fontSize = "1.5rem";
+                document.getElementById('res').innerText = "Za duże na 1 wydruk";
+                return;
+            }
+
+            // 1. Objętość bounding boxa w cm3
             const boxVolume = (x * y * z) / 1000;
-            const estimatedVolume = boxVolume * 0.25;
-            const estimatedWeight = estimatedVolume * 1.24;
-            let cost = (estimatedWeight * 0.80 * matMultiplier) + 20;
-            if (cost < 30) cost = 30;
+            
+            // 2. Współczynnik wypełnienia pudełka. 
+            // Małe przedmioty są zwykle bardziej "zbite". Duże (np. obudowy) mają w środku dużo pustego powietrza.
+            let volumeRatio = 0.25; 
+            if (boxVolume > 500) volumeRatio = 0.15;
+            if (boxVolume > 2000) volumeRatio = 0.08;
+
+            // Szacunkowa waga (objętość * ratio * średnia gęstość PLA ok. 1.24 g/cm3)
+            const estimatedWeight = boxVolume * volumeRatio * 1.24;
+
+            // 3. Parametry druku i cennik rynkowy dla szybkiej drukarki
+            const setupCost = 25; // Opłata stała: weryfikacja pliku, cięcie, przygotowanie maszyny
+            const materialCostPerGram = 0.12 * matMultiplier; // Szacowany koszt materiału z marżą
+            const machineRatePerHour = 10; // Koszt roboczogodziny drukarki (amortyzacja, prąd)
+            
+            // Prędkość druku - TPU drukuje się nawet 2-3 razy wolniej niż PLA
+            let printSpeedGramsPerHour = 40; 
+            if (matMultiplier > 1.4) printSpeedGramsPerHour = 15; // Jeśli wybrano TPU
+
+            // Czas druku w godzinach
+            const estimatedTime = estimatedWeight / printSpeedGramsPerHour;
+            
+            // 4. Kalkulacja końcowa
+            let cost = setupCost + (estimatedWeight * materialCostPerGram) + (estimatedTime * machineRatePerHour);
+            
+            // Minimalna rynkowa wartość zamówienia
+            if (cost < 35) cost = 35;
+            
+            document.getElementById('res').style.fontSize = "2.2rem";
             document.getElementById('res').innerText = "~" + Math.round(cost) + " PLN";
         }
 
