@@ -45,7 +45,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Ustalenie marginesu przewijania dla przyklejonego menu */
         html {
             scroll-padding-top: 80px; 
         }
@@ -491,7 +490,6 @@
             .calc-container { padding: 1.5rem; }
             .modal-content { width: 95%; }
             
-            /* Kafelki w rzędzie zamiast obok siebie ułatwiają czytanie wymiarów */
             .dims-wrapper { flex-direction: column; }
             .dims-wrapper input { width: 100%; }
         }
@@ -589,7 +587,6 @@
         </section>
     </div>
 
-    <!-- Portfolio z opcją kliknięcia i opóźnionym ładowaniem (lazy) -->
     <section id="portfolio">
         <h2 class="reveal">Moje Realizacje</h2>
         <p class="section-subtitle reveal">Przykłady projektów wykonanych dla moich klientów.</p>
@@ -651,14 +648,12 @@
             <div class="calc-container">
                 <label class="calc-label">Wymiary modelu (mm):</label>
                 <div class="dims-wrapper">
-                    <!-- Dodano oninput="calc()" dla odświeżania podczas wpisywania -->
                     <input type="number" id="dim-x" class="calc-input calc-trigger" placeholder="Długość" oninput="calc()">
                     <input type="number" id="dim-y" class="calc-input calc-trigger" placeholder="Szerokość" oninput="calc()">
                     <input type="number" id="dim-z" class="calc-input calc-trigger" placeholder="Wysokość" oninput="calc()">
                 </div>
                 
                 <label class="calc-label">Rodzaj materiału:</label>
-                <!-- Dodano onchange="calc()" dla odświeżania po zmianie materiału -->
                 <select id="mat" class="calc-input calc-trigger" onchange="calc()">
                     <option value="1">PLA (Standard)</option>
                     <option value="1.2">PETG (Wytrzymały)</option>
@@ -674,7 +669,6 @@
         </section>
     </div>
 
-    <!-- Kontakt -->
     <section id="kontakt" class="reveal" style="text-align:center;">
         <h2>Zapraszam do kontaktu</h2>
         <p class="section-subtitle">Masz gotowy plik lub tylko zarys pomysłu? Napisz!</p>
@@ -697,7 +691,6 @@
     </div>
 
     <script>
-        // Logika okna Modalnego (Lightbox)
         function openModal(src) {
             var modal = document.getElementById("myModal");
             var modalImg = document.getElementById("img01");
@@ -712,74 +705,68 @@
             modal.style.display = "none";
         }
 
-        // Dodanie zamknięcia Modala klawiszem ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === "Escape") {
                 closeModal();
             }
         });
 
-        // Logika Kalkulatora
+        // Zoptymalizowany pod Bambu Lab A1 algorytm kalkulatora
         function calc() {
             const x = parseFloat(document.getElementById('dim-x').value);
             const y = parseFloat(document.getElementById('dim-y').value);
             const z = parseFloat(document.getElementById('dim-z').value);
             const matMultiplier = parseFloat(document.getElementById('mat').value);
+            const resElement = document.getElementById('res');
             
             if (isNaN(x) || isNaN(y) || isNaN(z)) {
-                document.getElementById('res').style.fontSize = "2.2rem";
-                document.getElementById('res').innerText = "Wpisz wymiary";
+                resElement.style.fontSize = "2.2rem";
+                resElement.innerText = "Wpisz wymiary";
                 return;
             }
 
             if (x <= 0 || y <= 0 || z <= 0) {
-                document.getElementById('res').style.fontSize = "1.8rem";
-                document.getElementById('res').innerText = "Błędne wymiary";
+                resElement.style.fontSize = "1.8rem";
+                resElement.innerText = "Błędne wymiary";
                 return;
             }
             
-            // Sprawdzenie czy model nie przekracza pola roboczego (Bambu Lab A1: 256x256x256 mm)
+            // Limit pola roboczego Bambu Lab A1
             if (x > 256 || y > 256 || z > 256) {
-                document.getElementById('res').style.fontSize = "1.5rem";
-                document.getElementById('res').innerText = "Za duże na 1 wydruk";
+                resElement.style.fontSize = "1.5rem";
+                resElement.innerText = "Za duże na 1 wydruk (max 256mm)";
                 return;
             }
 
-            // 1. Objętość bounding boxa w cm3
             const boxVolume = (x * y * z) / 1000;
             
-            // 2. Współczynnik wypełnienia pudełka. 
-            // Małe przedmioty są zwykle bardziej "zbite". Duże (np. obudowy) mają w środku dużo pustego powietrza.
-            let volumeRatio = 0.25; 
-            if (boxVolume > 500) volumeRatio = 0.15;
-            if (boxVolume > 2000) volumeRatio = 0.08;
+            // Inteligentny współczynnik wypełnienia pudełka
+            let volumeRatio = 0.20; 
+            if (boxVolume > 500) volumeRatio = 0.12; 
+            if (boxVolume > 2000) volumeRatio = 0.07;
 
-            // Szacunkowa waga (objętość * ratio * średnia gęstość PLA ok. 1.24 g/cm3)
             const estimatedWeight = boxVolume * volumeRatio * 1.24;
 
-            // 3. Parametry druku i cennik rynkowy dla szybkiej drukarki
-            const setupCost = 25; // Opłata stała: weryfikacja pliku, cięcie, przygotowanie maszyny
-            const materialCostPerGram = 0.12 * matMultiplier; // Szacowany koszt materiału z marżą
-            const machineRatePerHour = 10; // Koszt roboczogodziny drukarki (amortyzacja, prąd)
+            // Parametry rynkowe dostosowane do szybkiej drukarki
+            const setupCost = 20; // Opłata stała obniżona dla atrakcyjności
+            const materialCostPerGram = 0.10 * matMultiplier; 
+            const machineRatePerHour = 12; 
             
-            // Prędkość druku - TPU drukuje się nawet 2-3 razy wolniej niż PLA
-            let printSpeedGramsPerHour = 40; 
-            if (matMultiplier > 1.4) printSpeedGramsPerHour = 15; // Jeśli wybrano TPU
+            // Szacowana prędkość druku dla Bambu A1
+            let printSpeedGramsPerHour = 80; 
+            if (matMultiplier > 1.4) printSpeedGramsPerHour = 25; // TPU dużo wolniej
 
-            // Czas druku w godzinach
             const estimatedTime = estimatedWeight / printSpeedGramsPerHour;
             
-            // 4. Kalkulacja końcowa
             let cost = setupCost + (estimatedWeight * materialCostPerGram) + (estimatedTime * machineRatePerHour);
             
-            // Minimalna rynkowa wartość zamówienia
-            if (cost < 35) cost = 35;
+            // Minimalna kwota zlecenia
+            if (cost < 30) cost = 30;
             
-            document.getElementById('res').style.fontSize = "2.2rem";
-            document.getElementById('res').innerText = "~" + Math.round(cost) + " PLN";
+            resElement.style.fontSize = "2.2rem";
+            resElement.innerText = "~" + Math.round(cost) + " PLN";
         }
 
-        // Uruchamianie kalkulatora po wciśnięciu ENTER
         document.querySelectorAll('.calc-trigger').forEach(input => {
             input.addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
@@ -788,25 +775,24 @@
             });
         });
 
-        // Logika Hamburger Menu
         function toggleMenu() {
             const menu = document.getElementById('nav-menu');
             menu.classList.toggle('active');
         }
 
-        // --- ANIMACJE SCROLL (Intersection Observer) ---
+        // Animacje scrolla
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
                 root: null,
                 rootMargin: "0px",
-                threshold: 0.15 // Uruchom animację gdy 15% elementu jest widoczne
+                threshold: 0.15 
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("active");
-                        observer.unobserve(entry.target); // Animuj tylko raz
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
