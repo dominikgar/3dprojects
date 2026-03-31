@@ -22,7 +22,10 @@
     <meta property="og:image" content="https://3dmake.pl/drukarka.jpg">
 
     <!-- Czcionka Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #f97316;
@@ -40,6 +43,11 @@
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+        }
+
+        /* Ustalenie marginesu przewijania dla przyklejonego menu */
+        html {
+            scroll-padding-top: 80px; 
         }
 
         body {
@@ -222,7 +230,7 @@
             border-radius: 20px;
             box-shadow: var(--shadow);
             border: 1px solid #e2e8f0;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -231,6 +239,7 @@
         .offer-card:hover { 
             border-color: var(--primary);
             transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         .offer-icon {
@@ -254,6 +263,11 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
         }
 
         .portfolio-img-container {
@@ -262,10 +276,9 @@
             background-color: #f1f5f9;
             overflow: hidden;
             position: relative;
-            cursor: pointer; /* Kursor wskazujący na klikalność */
+            cursor: pointer;
         }
         
-        /* Efekt hover na zdjęciu */
         .portfolio-img-container:hover .portfolio-img {
             transform: scale(1.05);
             filter: brightness(0.9);
@@ -275,10 +288,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease, filter 0.3s ease;
+            transition: transform 0.4s ease, filter 0.4s ease;
         }
         
-        /* Ikonka powiększenia na hover */
         .portfolio-img-container::after {
             content: '🔍';
             position: absolute;
@@ -356,6 +368,13 @@
             margin-bottom: 1.5rem;
             font-size: 1rem;
             color: var(--dark);
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .calc-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
         }
 
         #res {
@@ -384,7 +403,7 @@
 
         /* --- MODAL (LIGHTBOX) --- */
         .modal {
-            display: none; /* Domyślnie ukryty */
+            display: none;
             position: fixed;
             z-index: 2000;
             padding-top: 50px;
@@ -403,15 +422,15 @@
             width: 80%;
             max-width: 900px;
             max-height: 90vh;
-            object-fit: contain; /* Zachowaj proporcje, nie przycinaj */
+            object-fit: contain;
             border-radius: 5px;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            animation: zoom 0.3s;
+            animation: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         @keyframes zoom {
-            from {transform:scale(0)} 
-            to {transform:scale(1)}
+            from {transform:scale(0.8); opacity: 0;} 
+            to {transform:scale(1); opacity: 1;}
         }
 
         .close {
@@ -421,7 +440,7 @@
             color: #f1f1f1;
             font-size: 40px;
             font-weight: bold;
-            transition: 0.3s;
+            transition: color 0.3s;
             cursor: pointer;
             z-index: 2001;
         }
@@ -430,7 +449,18 @@
         .close:focus {
             color: var(--primary);
             text-decoration: none;
-            cursor: pointer;
+        }
+
+        /* --- ANIMACJE FADE-IN NA SCROLL --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- RESPONSYWNOŚĆ (MOBILE) --- */
@@ -459,7 +489,11 @@
             .printer-mockup { height: 280px; }
             .calculator-section { padding: 2rem 1rem; border-radius: 15px; }
             .calc-container { padding: 1.5rem; }
-            .modal-content { width: 95%; } /* Większe zdjęcie na mobile */
+            .modal-content { width: 95%; }
+            
+            /* Kafelki w rzędzie zamiast obok siebie ułatwiają czytanie wymiarów */
+            .dims-wrapper { flex-direction: column; }
+            .dims-wrapper input { width: 100%; }
         }
     </style>
 </head>
@@ -468,7 +502,7 @@
     <nav>
         <a href="#" class="logo">3D<span> Make</span></a>
         
-        <div class="menu-toggle" onclick="toggleMenu()">
+        <div class="menu-toggle" onclick="toggleMenu()" aria-label="Menu główne" role="button" tabindex="0">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
@@ -483,20 +517,19 @@
     </nav>
 
     <header class="hero">
-        <div class="hero-text">
+        <div class="hero-text reveal">
             <h1>Twoje pomysły,<br><span>Wydrukowane.</span></h1>
             <p>Profesjonalny druk 3D na sprzęcie <strong>Bambu Lab A1</strong>. Precyzja, szybkość i najwyższa jakość wykonania dla hobbystów i inżynierów.</p>
             <a href="#kalkulator" class="btn">Zacznij od wyceny</a>
         </div>
-        <div class="hero-image">
+        <div class="hero-image reveal" style="transition-delay: 0.2s;">
             <div class="printer-mockup">
                 <span style="padding: 20px; display:none;">Bambu Lab A1</span>
             </div>
         </div>
     </header>
 
-    <!-- Sekcja O mnie -->
-    <section id="omnie">
+    <section id="omnie" class="reveal">
         <h2>O pasji do tworzenia</h2>
         <p class="section-subtitle">Nazywam się Dominik Garbicz i przekształcam cyfrowe wizje w rzeczywiste przedmioty.</p>
         <div style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: var(--gray); text-align: justify;">
@@ -506,14 +539,13 @@
         </div>
     </section>
 
-    <!-- Oferta -->
     <div class="bg-light">
         <section id="oferta">
-            <h2>Kompleksowe Usługi</h2>
-            <p class="section-subtitle">Niezależnie od skali projektu, zapewniam profesjonalne podejście.</p>
+            <h2 class="reveal">Kompleksowe Usługi</h2>
+            <p class="section-subtitle reveal">Niezależnie od skali projektu, zapewniam profesjonalne podejście.</p>
             <div class="offer-grid">
                 
-                <div class="offer-card">
+                <div class="offer-card reveal">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
                         <polyline points="2 17 12 22 22 17"></polyline>
@@ -523,7 +555,7 @@
                     <p>Realizacja wydruków z formatów .STL, .OBJ, .3MF. Dobór optymalnych parametrów wypełnienia i warstw dla każdego modelu.</p>
                 </div>
 
-                <div class="offer-card">
+                <div class="offer-card reveal" style="transition-delay: 0.1s;">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="5" r="2"></circle>
                         <path d="M12 7v5"></path>
@@ -534,7 +566,7 @@
                     <p>Kompleksowe projektowanie modeli 3D od podstaw. Tworzenie części zamiennych na podstawie uszkodzonych elementów lub szkiców.</p>
                 </div>
 
-                <div class="offer-card">
+                <div class="offer-card reveal" style="transition-delay: 0.2s;">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
                          <circle cx="12" cy="12" r="3"></circle>
@@ -543,7 +575,7 @@
                     <p>Praca z szeroką gamą filamentów: <strong>PLA, PETG, PETG+</strong> oraz wytrzymałym i elastycznym <strong>TPU</strong>.</p>
                 </div>
 
-                <div class="offer-card">
+                <div class="offer-card reveal" style="transition-delay: 0.3s;">
                     <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="1" y="3" width="15" height="13"></rect>
                         <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
@@ -557,15 +589,15 @@
         </section>
     </div>
 
-    <!-- Portfolio z opcją kliknięcia -->
+    <!-- Portfolio z opcją kliknięcia i opóźnionym ładowaniem (lazy) -->
     <section id="portfolio">
-        <h2>Moje Realizacje</h2>
-        <p class="section-subtitle">Przykłady projektów wykonanych dla moich klientów.</p>
+        <h2 class="reveal">Moje Realizacje</h2>
+        <p class="section-subtitle reveal">Przykłady projektów wykonanych dla moich klientów.</p>
         <div class="portfolio-grid">
             
-            <div class="portfolio-item">
-                <div class="portfolio-img-container" onclick="openModal('haki.jpeg')">
-                    <img src="haki.jpeg" alt="Haki i uchwyty 3D" class="portfolio-img" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
+            <div class="portfolio-item reveal">
+                <div class="portfolio-img-container" onclick="openModal('haki.jpeg')" role="button" aria-label="Powiększ zdjęcie">
+                    <img src="haki.jpeg" alt="Haki i uchwyty 3D" class="portfolio-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
                     <span class="tag">PETG+ / Wytrzymałość</span>
@@ -574,9 +606,9 @@
                 </div>
             </div>
 
-            <div class="portfolio-item">
-                <div class="portfolio-img-container" onclick="openModal('uchwyt.jpeg')">
-                    <img src="uchwyt.jpeg" alt="Uchwyty na model montowany na scianę" class="portfolio-img" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
+            <div class="portfolio-item reveal" style="transition-delay: 0.1s;">
+                <div class="portfolio-img-container" onclick="openModal('uchwyt.jpeg')" role="button" aria-label="Powiększ zdjęcie">
+                    <img src="uchwyt.jpeg" alt="Uchwyty na model montowany na scianę" class="portfolio-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
                     <span class="tag">PLA</span>
@@ -585,9 +617,9 @@
                 </div>
             </div>
 
-            <div class="portfolio-item">
-                <div class="portfolio-img-container" onclick="openModal('pokretlo.jpeg')">
-                    <img src="pokretlo.jpeg" alt="Pokrętło do urządzenia AGD" class="portfolio-img" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
+            <div class="portfolio-item reveal" style="transition-delay: 0.2s;">
+                <div class="portfolio-img-container" onclick="openModal('pokretlo.jpeg')" role="button" aria-label="Powiększ zdjęcie">
+                    <img src="pokretlo.jpeg" alt="Pokrętło do urządzenia AGD" class="portfolio-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
                     <span class="tag">PLA</span>
@@ -596,9 +628,9 @@
                 </div>
             </div>
 
-            <div class="portfolio-item">
-                <div class="portfolio-img-container" onclick="openModal('figurka.jpeg')">
-                    <img src="figurka.jpeg" alt="Figurka drukowana w 3D i malowana" class="portfolio-img" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
+            <div class="portfolio-item reveal" style="transition-delay: 0.3s;">
+                <div class="portfolio-img-container" onclick="openModal('figurka.jpeg')" role="button" aria-label="Powiększ zdjęcie">
+                    <img src="figurka.jpeg" alt="Figurka drukowana w 3D i malowana" class="portfolio-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
                     <span class="tag">PLA / Malowanie</span>
@@ -612,20 +644,20 @@
 
     <!-- Kalkulator -->
     <div style="padding: 0 1rem;">
-        <section id="kalkulator" class="calculator-section" style="text-align:center;">
+        <section id="kalkulator" class="calculator-section reveal" style="text-align:center;">
             <h2 style="color:white; margin-bottom: 0.5rem;">Szybka Wycena</h2>
             <p style="color:#94a3b8; margin-bottom: 3rem;">Sprawdź szacunkowy koszt na podstawie wymiarów.</p>
             
             <div class="calc-container">
                 <label class="calc-label">Wymiary modelu (mm):</label>
                 <div class="dims-wrapper">
-                    <input type="number" id="dim-x" class="calc-input" placeholder="Dł.">
-                    <input type="number" id="dim-y" class="calc-input" placeholder="Szer.">
-                    <input type="number" id="dim-z" class="calc-input" placeholder="Wys.">
+                    <input type="number" id="dim-x" class="calc-input calc-trigger" placeholder="Długość">
+                    <input type="number" id="dim-y" class="calc-input calc-trigger" placeholder="Szerokość">
+                    <input type="number" id="dim-z" class="calc-input calc-trigger" placeholder="Wysokość">
                 </div>
                 
                 <label class="calc-label">Rodzaj materiału:</label>
-                <select id="mat" class="calc-input">
+                <select id="mat" class="calc-input calc-trigger">
                     <option value="1">PLA (Standard)</option>
                     <option value="1.2">PETG (Wytrzymały)</option>
                     <option value="1.5">TPU (Elastyczny)</option>
@@ -641,7 +673,7 @@
     </div>
 
     <!-- Kontakt -->
-    <section id="kontakt" style="text-align:center;">
+    <section id="kontakt" class="reveal" style="text-align:center;">
         <h2>Zapraszam do kontaktu</h2>
         <p class="section-subtitle">Masz gotowy plik lub tylko zarys pomysłu? Napisz!</p>
         <div style="background: #eff6ff; display: inline-block; padding: 2.5rem 5rem; border-radius: 25px; border: 1px solid #dbeafe;">
@@ -658,16 +690,16 @@
 
     <!-- The Modal (Lightbox) -->
     <div id="myModal" class="modal" onclick="closeModal()">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="img01">
+        <span class="close" onclick="closeModal()" aria-label="Zamknij podgląd" role="button">&times;</span>
+        <img class="modal-content" id="img01" alt="Podgląd zdjęcia">
     </div>
 
     <script>
-        // Modal Logic
+        // Logika okna Modalnego (Lightbox)
         function openModal(src) {
             var modal = document.getElementById("myModal");
             var modalImg = document.getElementById("img01");
-            modal.style.display = "flex"; // Używamy flex do centrowania
+            modal.style.display = "flex";
             modal.style.alignItems = "center";
             modal.style.justifyContent = "center";
             modalImg.src = src;
@@ -678,7 +710,14 @@
             modal.style.display = "none";
         }
 
-        // Kalkulator Logic
+        // Dodanie zamknięcia Modala klawiszem ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+
+        // Logika Kalkulatora
         function calc() {
             const x = parseFloat(document.getElementById('dim-x').value);
             const y = parseFloat(document.getElementById('dim-y').value);
@@ -698,11 +737,41 @@
             document.getElementById('res').innerText = "~" + Math.round(cost) + " PLN";
         }
 
-        // Hamburger Menu Logic
+        // Uruchamianie kalkulatora po wciśnięciu ENTER
+        document.querySelectorAll('.calc-trigger').forEach(input => {
+            input.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    calc();
+                }
+            });
+        });
+
+        // Logika Hamburger Menu
         function toggleMenu() {
             const menu = document.getElementById('nav-menu');
             menu.classList.toggle('active');
         }
+
+        // --- ANIMACJE SCROLL (Intersection Observer) ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.15 // Uruchom animację gdy 15% elementu jest widoczne
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); // Animuj tylko raz
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll(".reveal");
+            revealElements.forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 </html>
