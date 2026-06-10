@@ -3,37 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO Meta Tags -->
-    <title>3D Make - Profesjonalny Druk 3D i Projektowanie CAD - Dominik Garbicz</title>
-    <meta name="description" content="Oferuję profesjonalne usługi druku 3D (FDM) oraz projektowanie CAD. Szybka wycena online, druk z PLA, PETG, TPU. Realizacja prototypów i części zamiennych.">
-    <meta name="keywords" content="druk 3d, projektowanie cad, drukowanie 3d, bambu lab, pla, petg, tpu, prototypowanie, części zamienne, wycena druku 3d">
+    <title>3D Make - Druk 3D części, uchwytów i zamienników na wymiar</title>
+    <meta name="description" content="Projektuję i drukuję praktyczne części 3D: uchwyty, adaptery, elementy naprawcze, części zamienne i prototypy. Druk FDM z PLA, PETG i TPU. Wyślij zdjęcie, szkic albo plik STL do wyceny.">
+    <meta name="keywords" content="druk 3d, części zamienne 3d, uchwyty 3d, adaptery 3d, projektowanie cad, drukowanie 3d, bambu lab, pla, petg, tpu, prototypowanie, wycena druku 3d">
     <meta name="author" content="Dominik Garbicz">
-    
+
     <!-- Canonical Tag -->
     <link rel="canonical" href="https://3dmake.pl/">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://3dmake.pl/">
-    <meta property="og:title" content="3D Make - Twoje pomysły, wydrukowane.">
-    <meta property="og:description" content="Profesjonalny druk 3D i projektowanie. Sprawdź szybką wycenę online!">
+    <meta property="og:title" content="3D Make - Praktyczne części 3D na wymiar">
+    <meta property="og:description" content="Zaprojektuję i wydrukuję uchwyt, adapter, element naprawczy albo część, której nie możesz kupić.">
     <meta property="og:image" content="https://3dmake.pl/drukarka.jpg">
 
     <!-- Czcionka Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary: #f97316;
             --primary-hover: #ea580c;
-            --dark: #0f172a;    
-            --gray: #64748b;    
-            --light: #f8fafc;   
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
             --white: #ffffff;
+            --muted-orange: #fff7ed;
+            --blue-light: #eff6ff;
+            --border: #e2e8f0;
             --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
@@ -45,9 +48,7 @@
             scroll-behavior: smooth;
         }
 
-        html {
-            scroll-padding-top: 80px; 
-        }
+        html { scroll-padding-top: 80px; }
 
         body {
             line-height: 1.6;
@@ -56,7 +57,6 @@
             overflow-x: hidden;
         }
 
-        /* --- NAWIGACJA --- */
         nav {
             background-color: rgba(255, 255, 255, 0.98);
             padding: 1rem 2rem;
@@ -82,7 +82,7 @@
         nav ul {
             list-style: none;
             display: flex;
-            gap: 30px;
+            gap: 26px;
             align-items: center;
         }
 
@@ -95,6 +95,16 @@
         }
 
         nav a:hover { color: var(--primary); }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 18px;
+            border-radius: 999px;
+            box-shadow: 0 4px 14px rgba(249, 115, 22, 0.25);
+        }
+
+        .nav-cta:hover { background: var(--primary-hover); }
 
         .menu-toggle {
             display: none;
@@ -112,7 +122,6 @@
             transition: 0.3s;
         }
 
-        /* --- SEKCJE --- */
         section {
             padding: 5rem 2rem;
             max-width: 1200px;
@@ -120,10 +129,11 @@
             width: 100%;
         }
 
+        h1, h2, h3, h4 { color: var(--dark); }
+
         h2 {
             text-align: center;
             margin-bottom: 1rem;
-            color: var(--dark);
             font-size: 2.2rem;
             font-weight: 800;
             line-height: 1.2;
@@ -133,7 +143,7 @@
             text-align: center;
             color: var(--gray);
             margin-bottom: 3rem;
-            max-width: 600px;
+            max-width: 720px;
             margin-left: auto;
             margin-right: auto;
             padding: 0 1rem;
@@ -143,11 +153,11 @@
             display: inline-block;
             background: var(--primary);
             color: white;
-            padding: 12px 35px;
+            padding: 12px 34px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s, background 0.2s;
+            font-weight: 700;
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
             border: none;
             cursor: pointer;
@@ -159,39 +169,92 @@
             transform: translateY(-2px);
         }
 
-        /* --- HERO --- */
+        .btn-secondary {
+            background: white;
+            color: var(--dark);
+            border: 1px solid var(--border);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--light);
+            color: var(--dark);
+        }
+
         .hero {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 4rem 2rem;
+            padding: 4.5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            min-height: 70vh;
-            gap: 2rem;
+            min-height: 74vh;
+            gap: 3rem;
         }
 
-        .hero-text { flex: 1; }
+        .hero-text { flex: 1.1; }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--primary);
+            background: var(--muted-orange);
+            border: 1px solid #fed7aa;
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+        }
 
         .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
+            font-size: 3.55rem;
+            line-height: 1.05;
             margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
         }
 
         .hero h1 span { color: var(--primary); }
 
-        .hero-image { flex: 1; display: flex; justify-content: center; width: 100%; }
+        .hero p {
+            color: var(--gray);
+            font-size: 1.12rem;
+            max-width: 650px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .trust-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .trust-list span {
+            background: var(--light);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 999px;
+        }
+
+        .hero-image { flex: 0.9; display: flex; justify-content: center; width: 100%; }
 
         .printer-mockup {
             width: 100%;
             max-width: 500px;
-            height: 400px;
+            height: 410px;
             background-color: #e2e8f0;
             background-image: url('drukarka.jpg');
             background-position: center;
             background-size: cover;
-            border-radius: 20px;
+            border-radius: 24px;
             box-shadow: var(--shadow);
             position: relative;
             display: flex;
@@ -209,37 +272,73 @@
             width: 100%;
             height: 100%;
             border: 2px solid var(--primary);
-            border-radius: 20px;
+            border-radius: 24px;
             z-index: -1;
         }
 
-        /* --- OFERTA --- */
         .bg-light { background-color: var(--light); width: 100%; }
 
-        .offer-grid {
+        .intro-box {
+            max-width: 850px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: var(--gray);
+            text-align: left;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+        }
+
+        .choice-grid,
+        .offer-grid,
+        .process-grid,
+        .pricing-grid,
+        .faq-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2rem;
             width: 100%;
         }
 
-        .offer-card {
+        .card,
+        .offer-card,
+        .process-card,
+        .pricing-card,
+        .faq-card {
             background: var(--white);
-            padding: 2.5rem;
+            padding: 2.2rem;
             border-radius: 20px;
             box-shadow: var(--shadow);
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border);
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
         }
 
-        .offer-card:hover { 
+        .card:hover,
+        .offer-card:hover,
+        .process-card:hover,
+        .pricing-card:hover {
             border-color: var(--primary);
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+
+        .card h3,
+        .offer-card h3,
+        .process-card h3,
+        .pricing-card h3,
+        .faq-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.15rem;
+        }
+
+        .card p,
+        .offer-card p,
+        .process-card p,
+        .pricing-card p,
+        .faq-card p { color: var(--gray); }
 
         .offer-icon {
             width: 48px;
@@ -249,7 +348,19 @@
             stroke-width: 1.5;
         }
 
-        /* --- PORTFOLIO --- */
+        .process-number {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -259,15 +370,14 @@
 
         .portfolio-item {
             background: var(--white);
-            border-radius: 15px;
+            border-radius: 18px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease;
+            border: 1px solid var(--border);
         }
-        
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-        }
+
+        .portfolio-item:hover { transform: translateY(-5px); }
 
         .portfolio-img-container {
             width: 100%;
@@ -277,7 +387,7 @@
             position: relative;
             cursor: pointer;
         }
-        
+
         .portfolio-img-container:hover .portfolio-img {
             transform: scale(1.05);
             filter: brightness(0.9);
@@ -289,7 +399,7 @@
             object-fit: cover;
             transition: transform 0.4s ease, filter 0.4s ease;
         }
-        
+
         .portfolio-img-container::after {
             content: '🔍';
             position: absolute;
@@ -304,24 +414,32 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        .portfolio-img-container:hover::after {
-            opacity: 1;
-        }
+        .portfolio-img-container:hover::after { opacity: 1; }
 
         .portfolio-desc { padding: 1.5rem; }
-        
+
+        .portfolio-desc h4 { margin: 0.2rem 0 0.7rem; }
+
+        .portfolio-desc p { color: var(--gray); }
+
         .tag {
             display: inline-block;
-            background: #fff7ed;
+            background: var(--muted-orange);
             color: var(--primary);
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
-        /* --- KALKULATOR --- */
+        .case-line {
+            display: block;
+            margin-top: 0.55rem;
+        }
+
+        .case-line strong { color: var(--dark); }
+
         .calculator-section {
             background: var(--dark);
             color: white;
@@ -331,14 +449,26 @@
             padding: 4rem 2rem;
         }
 
-        .calc-container {
+        .calculator-section h2 { color: white; }
+
+        .calc-layout {
+            display: grid;
+            grid-template-columns: minmax(260px, 1fr) minmax(260px, 0.9fr);
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .calc-container,
+        .calc-note {
             background: rgba(255, 255, 255, 0.1);
             padding: 2.5rem;
             border-radius: 20px;
-            max-width: 500px;
-            margin: 0 auto;
             text-align: left;
         }
+
+        .calc-note h3 { color: white; margin-bottom: 1rem; }
+        .calc-note p, .calc-note li { color: #cbd5e1; }
+        .calc-note ul { padding-left: 1.2rem; margin: 1rem 0; }
 
         .calc-label {
             display: block;
@@ -352,11 +482,8 @@
             gap: 10px;
             margin-bottom: 1.5rem;
         }
-        
-        .dims-wrapper input {
-            width: 33%;
-            margin-bottom: 0;
-        }
+
+        .dims-wrapper input { width: 33%; margin-bottom: 0; }
 
         .calc-input {
             width: 100%;
@@ -385,11 +512,37 @@
         }
 
         .result-subtext {
-            color:#94a3b8; 
-            font-size: 0.75rem; 
-            text-align: center; 
+            color:#94a3b8;
+            font-size: 0.8rem;
+            text-align: center;
             margin-top: 1rem;
-            line-height: 1.4;
+            line-height: 1.5;
+        }
+
+        .pricing-card .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin: 0.5rem 0 1rem;
+        }
+
+        .pricing-card small { color: var(--gray); }
+
+        .contact-box {
+            background: var(--blue-light);
+            display: inline-block;
+            padding: 2.5rem 5rem;
+            border-radius: 25px;
+            border: 1px solid #dbeafe;
+            max-width: 100%;
+        }
+
+        .contact-box a.email {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 800;
+            text-decoration: none;
+            word-break: break-all;
         }
 
         footer {
@@ -397,10 +550,9 @@
             text-align: center;
             padding: 3rem 2rem;
             color: var(--gray);
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid var(--border);
         }
 
-        /* --- MODAL (LIGHTBOX) --- */
         .modal {
             display: none;
             position: fixed;
@@ -428,7 +580,7 @@
         }
 
         @keyframes zoom {
-            from {transform:scale(0.8); opacity: 0;} 
+            from {transform:scale(0.8); opacity: 0;}
             to {transform:scale(1); opacity: 1;}
         }
 
@@ -445,53 +597,59 @@
         }
 
         .close:hover,
-        .close:focus {
-            color: var(--primary);
-            text-decoration: none;
-        }
+        .close:focus { color: var(--primary); }
 
-        /* --- ANIMACJE FADE-IN NA SCROLL --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
         }
-        
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- RESPONSYWNOŚĆ (MOBILE) --- */
+        @media (max-width: 900px) {
+            .calc-layout { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 768px) {
             .menu-toggle { display: flex; }
             nav ul {
                 position: absolute;
-                top: 60px; left: 0; width: 100%;
+                top: 60px;
+                left: 0;
+                width: 100%;
                 background: white;
                 flex-direction: column;
                 align-items: center;
                 gap: 0;
-                border-bottom: 1px solid #e2e8f0;
+                border-bottom: 1px solid var(--border);
                 box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
                 max-height: 0;
                 overflow: hidden;
                 transition: max-height 0.3s ease-in-out;
             }
-            nav ul.active { max-height: 300px; }
+
+            nav ul.active { max-height: 500px; }
             nav ul li { width: 100%; text-align: center; }
-            nav ul li a { display: block; padding: 1.5rem; width: 100%; }
+            nav ul li a { display: block; padding: 1.2rem; width: 100%; }
+            .nav-cta { border-radius: 0; box-shadow: none; }
             section { padding: 3rem 1.5rem; }
             .hero { flex-direction: column-reverse; text-align: center; padding-top: 2rem; min-height: auto; }
-            .hero h1 { font-size: 2.2rem; margin-top: 2rem; }
-            .hero-text { padding-right: 0; }
+            .hero h1 { font-size: 2.35rem; margin-top: 2rem; }
+            .hero p { font-size: 1rem; }
+            .hero-actions, .trust-list { justify-content: center; }
             .printer-mockup { height: 280px; }
             .calculator-section { padding: 2rem 1rem; border-radius: 15px; }
-            .calc-container { padding: 1.5rem; }
+            .calc-container, .calc-note { padding: 1.5rem; }
             .modal-content { width: 95%; }
-            
             .dims-wrapper { flex-direction: column; }
             .dims-wrapper input { width: 100%; }
+            .contact-box { padding: 2rem 1.2rem; }
+            .contact-box a.email { font-size: 1.25rem; }
+            .intro-box { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -499,7 +657,7 @@
 
     <nav>
         <a href="#" class="logo">3D<span> Make</span></a>
-        
+
         <div class="menu-toggle" onclick="toggleMenu()" aria-label="Menu główne" role="button" tabindex="0">
             <div class="bar"></div>
             <div class="bar"></div>
@@ -508,17 +666,29 @@
 
         <ul id="nav-menu">
             <li><a href="#omnie" onclick="toggleMenu()">O mnie</a></li>
+            <li><a href="#co-zrobic" onclick="toggleMenu()">Co chcesz zrobić?</a></li>
             <li><a href="#oferta" onclick="toggleMenu()">Oferta</a></li>
-            <li><a href="#portfolio" onclick="toggleMenu()">Portfolio</a></li>
+            <li><a href="#portfolio" onclick="toggleMenu()">Realizacje</a></li>
             <li><a href="#kalkulator" onclick="toggleMenu()">Wycena</a></li>
+            <li><a href="#kontakt" onclick="toggleMenu()" class="nav-cta">Kontakt</a></li>
         </ul>
     </nav>
 
     <header class="hero">
         <div class="hero-text reveal">
-            <h1>Twoje pomysły,<br><span>Wydrukowane.</span></h1>
-            <p>Profesjonalny druk 3D na sprzęcie <strong>Bambu Lab A1</strong>. Precyzja, szybkość i najwyższa jakość wykonania dla hobbystów i inżynierów.</p>
-            <a href="#kalkulator" class="btn">Zacznij od wyceny</a>
+            <span class="eyebrow">Druk 3D użytkowych części na wymiar</span>
+            <h1>Zaprojektuję i wydrukuję część, której <span>nie możesz kupić.</span></h1>
+            <p>Uchwyty, adaptery, elementy naprawcze, części zamienne i prototypy. Wyślij zdjęcie, szkic albo plik STL/3MF — sprawdzę, czy da się to wykonać i podam konkretną wycenę.</p>
+            <div class="hero-actions">
+                <a href="#kontakt" class="btn">Wyślij pomysł do wyceny</a>
+                <a href="#portfolio" class="btn btn-secondary">Zobacz realizacje</a>
+            </div>
+            <div class="trust-list">
+                <span>Bambu Lab A1</span>
+                <span>PLA / PETG / TPU</span>
+                <span>Wysyłka InPost</span>
+                <span>Małe serie i pojedyncze części</span>
+            </div>
         </div>
         <div class="hero-image reveal" style="transition-delay: 0.2s;">
             <div class="printer-mockup">
@@ -528,100 +698,146 @@
     </header>
 
     <section id="omnie" class="reveal">
-        <h2>O pasji do tworzenia</h2>
-        <p class="section-subtitle">Nazywam się Dominik Garbicz i przekształcam cyfrowe wizje w rzeczywiste przedmioty.</p>
-        <div style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: var(--gray); text-align: justify;">
-            <p>W <strong>3D Make</strong> łączę technologiczną precyzję z pasją do rozwiązywania problemów. Moja przygoda z drukiem 3D narodziła się z chęci tworzenia rzeczy, których nie można kupić w zwykłym sklepie. Dziś pomagam innym realizować ich projekty – od prostych gadżetów, przez skomplikowane części zamienne, aż po prototypy inżynieryjne.</p>
+        <h2>Pasja, która rozwiązuje praktyczne problemy</h2>
+        <p class="section-subtitle">Nazywam się Dominik Garbicz. Druk 3D traktuję nie tylko jako hobby, ale jako sposób na tworzenie rzeczy, których często brakuje w domu, warsztacie albo projekcie DIY.</p>
+        <div class="intro-box">
+            <p>W <strong>3D Make</strong> projektuję i drukuję praktyczne elementy: uchwyty, adaptery, zamienniki uszkodzonych części, prototypy i drobne usprawnienia na wymiar. Najbardziej lubię projekty, w których trzeba odtworzyć brakującą część albo wymyślić prostsze rozwiązanie realnego problemu.</p>
             <br>
-            <p>Pracuję na nowoczesnej drukarce <strong>Bambu Lab A1</strong>, co pozwala mi zagwarantować nie tylko wysoką dokładność, ale również krótki czas realizacji. Oferuję również wsparcie w zakresie projektowania CAD, pomagając dopracować Twój pomysł tak, aby finalny produkt był funkcjonalny i wytrzymały.</p>
+            <p>Pracuję na drukarce <strong>Bambu Lab A1</strong> i korzystam z materiałów takich jak <strong>PLA, PETG, PETG+</strong> oraz <strong>TPU</strong>. Mogę wydrukować gotowy plik albo przygotować model CAD na podstawie zdjęcia, wymiarów, szkicu lub uszkodzonego elementu.</p>
         </div>
     </section>
 
     <div class="bg-light">
-        <section id="oferta">
-            <h2 class="reveal">Kompleksowe Usługi</h2>
-            <p class="section-subtitle reveal">Niezależnie od skali projektu, zapewniam profesjonalne podejście.</p>
-            <div class="offer-grid">
-                
-                <div class="offer-card reveal">
-                    <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                        <polyline points="2 17 12 22 22 17"></polyline>
-                        <polyline points="2 12 12 17 22 12"></polyline>
-                    </svg>
-                    <h3 style="color:var(--primary); margin-bottom:1rem;">Druk z plików</h3>
-                    <p>Realizacja wydruków z formatów .STL, .OBJ, .3MF. Dobór optymalnych parametrów wypełnienia i warstw dla każdego modelu.</p>
+        <section id="co-zrobic">
+            <h2 class="reveal">Co chcesz zrobić?</h2>
+            <p class="section-subtitle reveal">Nie musisz znać się na druku 3D. Wystarczy, że pokażesz problem albo prześlesz plik.</p>
+            <div class="choice-grid">
+                <div class="card reveal">
+                    <h3>Mam gotowy plik 3D</h3>
+                    <p>Prześlij STL, 3MF albo OBJ. Dobiorę materiał, ustawienia druku i podam orientacyjny koszt oraz termin realizacji.</p>
                 </div>
-
-                <div class="offer-card reveal" style="transition-delay: 0.1s;">
-                    <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="5" r="2"></circle>
-                        <path d="M12 7v5"></path>
-                        <line x1="12" y1="12" x2="19" y2="20"></line>
-                        <line x1="12" y1="12" x2="5" y2="20"></line>
-                    </svg>
-                    <h3 style="color:var(--primary); margin-bottom:1rem;">Projektowanie CAD</h3>
-                    <p>Kompleksowe projektowanie modeli 3D od podstaw. Tworzenie części zamiennych na podstawie uszkodzonych elementów lub szkiców.</p>
+                <div class="card reveal" style="transition-delay: 0.1s;">
+                    <h3>Mam uszkodzoną część</h3>
+                    <p>Wyślij zdjęcie, wymiary albo starą część. Sprawdzę, czy da się ją odtworzyć i wydrukować zamiennik.</p>
                 </div>
-
-                <div class="offer-card reveal" style="transition-delay: 0.2s;">
-                    <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                         <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                    <h3 style="color:var(--primary); margin-bottom:1rem;">Materiały Specjalistyczne</h3>
-                    <p>Praca z szeroką gamą filamentów: <strong>PLA, PETG, PETG+</strong> oraz wytrzymałym i elastycznym <strong>TPU</strong>.</p>
+                <div class="card reveal" style="transition-delay: 0.2s;">
+                    <h3>Mam pomysł, ale nie mam projektu</h3>
+                    <p>Opisz zastosowanie. Zaproponuję rozwiązanie, przygotuję model CAD i wydrukuję wersję testową.</p>
                 </div>
+            </div>
+        </section>
+    </div>
 
-                <div class="offer-card reveal" style="transition-delay: 0.3s;">
-                    <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="1" y="3" width="15" height="13"></rect>
-                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
-                    </svg>
-                    <h3 style="color:var(--primary); margin-bottom:1rem;">Wysyłka i Czas</h3>
-                    <p>Szybka realizacja (zazwyczaj 2-3 dni robocze). Bezpieczna wysyłka <strong>Paczkomatem InPost</strong> lub kurierem.</p>
+    <section id="oferta">
+        <h2 class="reveal">Oferta</h2>
+        <p class="section-subtitle reveal">Konkretnie: drukuję i projektuję małe, praktyczne elementy, które mają działać, pasować i rozwiązywać problem.</p>
+        <div class="offer-grid">
+            <div class="offer-card reveal">
+                <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                <h3>Druk z gotowych plików</h3>
+                <p>Realizacja wydruków z formatów STL, OBJ i 3MF. Dobór warstwy, wypełnienia, orientacji modelu i materiału do zastosowania.</p>
+            </div>
+
+            <div class="offer-card reveal" style="transition-delay: 0.1s;">
+                <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="5" r="2"></circle>
+                    <path d="M12 7v5"></path>
+                    <line x1="12" y1="12" x2="19" y2="20"></line>
+                    <line x1="12" y1="12" x2="5" y2="20"></line>
+                </svg>
+                <h3>Projektowanie CAD</h3>
+                <p>Modelowanie od podstaw na podstawie zdjęcia, wymiarów, szkicu lub starej części. Szczególnie przydatne przy elementach naprawczych.</p>
+            </div>
+
+            <div class="offer-card reveal" style="transition-delay: 0.2s;">
+                <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <h3>Części, uchwyty i adaptery</h3>
+                <p>Elementy do domu, ogrodu, warsztatu, elektroniki, AGD i projektów DIY. Tam, gdzie gotowy produkt nie pasuje albo nie istnieje.</p>
+            </div>
+
+            <div class="offer-card reveal" style="transition-delay: 0.3s;">
+                <svg class="offer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="3" width="15" height="13"></rect>
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+                <h3>Prototypy i małe serie</h3>
+                <p>Pojedyncze sztuki, wersje testowe i krótkie serie. Wysyłka Paczkomatem InPost lub kurierem po potwierdzeniu wyceny.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="bg-light">
+        <section id="proces">
+            <h2 class="reveal">Jak wygląda współpraca?</h2>
+            <p class="section-subtitle reveal">Prosto i bez technicznego zamieszania. Najpierw ustalamy, czy dany wydruk ma sens.</p>
+            <div class="process-grid">
+                <div class="process-card reveal">
+                    <div class="process-number">1</div>
+                    <h3>Wysyłasz opis</h3>
+                    <p>Może to być plik 3D, zdjęcie uszkodzonej części, szkic, wymiary albo krótki opis problemu.</p>
+                </div>
+                <div class="process-card reveal" style="transition-delay: 0.1s;">
+                    <div class="process-number">2</div>
+                    <h3>Sprawdzam wykonalność</h3>
+                    <p>Oceniam materiał, wytrzymałość, orientację druku, możliwe ograniczenia i sens ekonomiczny wykonania.</p>
+                </div>
+                <div class="process-card reveal" style="transition-delay: 0.2s;">
+                    <div class="process-number">3</div>
+                    <h3>Dostajesz wycenę</h3>
+                    <p>Podaję koszt druku, ewentualnego projektu CAD i orientacyjny termin. Nic nie drukuję bez akceptacji.</p>
+                </div>
+                <div class="process-card reveal" style="transition-delay: 0.3s;">
+                    <div class="process-number">4</div>
+                    <h3>Drukuję i wysyłam</h3>
+                    <p>Po wykonaniu elementu pakuję go bezpiecznie i wysyłam Paczkomatem InPost lub kurierem.</p>
                 </div>
             </div>
         </section>
     </div>
 
     <section id="portfolio">
-        <h2 class="reveal">Moje Realizacje</h2>
-        <p class="section-subtitle reveal">Przykłady projektów wykonanych dla moich klientów.</p>
+        <h2 class="reveal">Realizacje</h2>
+        <p class="section-subtitle reveal">Kilka przykładów praktycznych wydruków. Najlepiej pokazują, w czym druk 3D ma sens: naprawy, dopasowanie i nietypowe zastosowania.</p>
         <div class="portfolio-grid">
-            
             <div class="portfolio-item reveal">
                 <div class="portfolio-img-container" onclick="openModal('haki.jpeg')" role="button" aria-label="Powiększ zdjęcie">
-                    <img src="haki.jpeg" alt="Haki i uchwyty 3D" class="portfolio-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
+                    <img src="haki.jpeg" alt="Haki i uchwyty drukowane w 3D" class="portfolio-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
                     <span class="tag">PETG+ / Wytrzymałość</span>
                     <h4>Zestaw uchwytów technicznych</h4>
-                    <p>Elementy montażowe zaprojektowane do pracy pod stałym obciążeniem.</p>
+                    <p><span class="case-line"><strong>Problem:</strong> potrzebne były elementy montażowe dopasowane do konkretnego zastosowania.</span><span class="case-line"><strong>Rozwiązanie:</strong> wydruk z mocniejszego materiału i ustawieniami pod obciążenie.</span></p>
                 </div>
             </div>
 
             <div class="portfolio-item reveal" style="transition-delay: 0.1s;">
                 <div class="portfolio-img-container" onclick="openModal('uchwyt.jpeg')" role="button" aria-label="Powiększ zdjęcie">
-                    <img src="uchwyt.jpeg" alt="Uchwyty na model montowany na scianę" class="portfolio-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
+                    <img src="uchwyt.jpeg" alt="Uchwyt drukowany w 3D montowany na ścianę" class="portfolio-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
-                    <span class="tag">PLA</span>
-                    <h4>Domowe zastosowania</h4>
-                    <p>Wydruki o standardowym i domowym zastosowaniu. Wystarczająco mocne.</p>
+                    <span class="tag">PLA / Domowe zastosowanie</span>
+                    <h4>Uchwyt na wymiar</h4>
+                    <p><span class="case-line"><strong>Problem:</strong> gotowe uchwyty nie pasowały do miejsca montażu.</span><span class="case-line"><strong>Rozwiązanie:</strong> prosty wydruk dopasowany do konkretnego wymiaru i sposobu użycia.</span></p>
                 </div>
             </div>
 
             <div class="portfolio-item reveal" style="transition-delay: 0.2s;">
                 <div class="portfolio-img-container" onclick="openModal('pokretlo.jpeg')" role="button" aria-label="Powiększ zdjęcie">
-                    <img src="pokretlo.jpeg" alt="Pokrętło do urządzenia AGD" class="portfolio-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
+                    <img src="pokretlo.jpeg" alt="Pokrętło do urządzenia AGD drukowane w 3D" class="portfolio-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
-                    <span class="tag">PLA</span>
-                    <h4>Części zamienne AGD</h4>
-                    <p>Precyzyjnie wykonane pokrętło zamienne do sprzętu domowego.</p>
+                    <span class="tag">PLA / Część zamienna</span>
+                    <h4>Pokrętło do sprzętu domowego</h4>
+                    <p><span class="case-line"><strong>Problem:</strong> oryginalna część była uszkodzona albo trudno dostępna.</span><span class="case-line"><strong>Rozwiązanie:</strong> odtworzenie kształtu i wykonanie zamiennika dopasowanego do urządzenia.</span></p>
                 </div>
             </div>
 
@@ -630,61 +846,118 @@
                     <img src="figurka.jpeg" alt="Figurka drukowana w 3D i malowana" class="portfolio-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Brak+zdjęcia'">
                 </div>
                 <div class="portfolio-desc">
-                    <span class="tag">PLA / Malowanie</span>
+                    <span class="tag">PLA / Detal</span>
                     <h4>Figurka kolekcjonerska</h4>
-                    <p>Model wydrukowany z dbałością o detale, a następnie ręcznie pomalowany.</p>
+                    <p><span class="case-line"><strong>Problem:</strong> potrzebny był niestandardowy model dekoracyjny.</span><span class="case-line"><strong>Rozwiązanie:</strong> dokładny wydruk z dbałością o szczegóły i późniejsze wykończenie ręczne.</span></p>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- Kalkulator -->
     <div style="padding: 0 1rem;">
-        <section id="kalkulator" class="calculator-section reveal" style="text-align:center;">
-            <h2 style="color:white; margin-bottom: 0.5rem;">Szybka Wycena</h2>
-            <p style="color:#94a3b8; margin-bottom: 3rem;">Sprawdź szacunkowy koszt na podstawie wymiarów.</p>
-            
-            <div class="calc-container">
-                <label class="calc-label">Wymiary modelu (mm):</label>
-                <div class="dims-wrapper">
-                    <input type="number" id="dim-x" class="calc-input calc-trigger" placeholder="Długość" oninput="calc()">
-                    <input type="number" id="dim-y" class="calc-input calc-trigger" placeholder="Szerokość" oninput="calc()">
-                    <input type="number" id="dim-z" class="calc-input calc-trigger" placeholder="Wysokość" oninput="calc()">
+        <section id="kalkulator" class="calculator-section reveal">
+            <h2>Orientacyjny koszt druku</h2>
+            <p style="color:#94a3b8; margin-bottom: 3rem; text-align:center;">Kalkulator pokazuje tylko przybliżenie. Najdokładniejszą wycenę zrobię po otrzymaniu pliku, zdjęcia albo wymiarów części.</p>
+
+            <div class="calc-layout">
+                <div class="calc-container">
+                    <label class="calc-label">Wymiary modelu (mm):</label>
+                    <div class="dims-wrapper">
+                        <input type="number" id="dim-x" class="calc-input calc-trigger" placeholder="Długość" oninput="calc()">
+                        <input type="number" id="dim-y" class="calc-input calc-trigger" placeholder="Szerokość" oninput="calc()">
+                        <input type="number" id="dim-z" class="calc-input calc-trigger" placeholder="Wysokość" oninput="calc()">
+                    </div>
+
+                    <label class="calc-label">Rodzaj materiału:</label>
+                    <select id="mat" class="calc-input calc-trigger" onchange="calc()">
+                        <option value="1">PLA - standardowy</option>
+                        <option value="1.2">PETG - wytrzymalszy</option>
+                        <option value="1.5">TPU - elastyczny</option>
+                    </select>
+
+                    <button class="btn" style="width:100%;" onclick="calc()">Policz orientacyjnie</button>
+                    <div id="res">Wpisz wymiary</div>
+                    <p class="result-subtext">To nie jest ostateczna oferta. Cena zależy od geometrii modelu, wypełnienia, czasu druku, podpór i ewentualnego projektowania CAD.</p>
                 </div>
-                
-                <label class="calc-label">Rodzaj materiału:</label>
-                <select id="mat" class="calc-input calc-trigger" onchange="calc()">
-                    <option value="1">PLA (Standard)</option>
-                    <option value="1.2">PETG (Wytrzymały)</option>
-                    <option value="1.5">TPU (Elastyczny)</option>
-                </select>
-                
-                <button class="btn" style="width:100%;" onclick="calc()">Oblicz szacunek</button>
-                <div id="res">0.00 PLN</div>
-                <p class="result-subtext">
-                    *Cena dotyczy modelu o standardowym wypełnieniu (20%). Obiekty pełne (100% wypełnienia) będą droższe. To jest wycena automatyczna - ostateczną cenę potwierdzę po otrzymaniu pliku.
-                </p>
+
+                <div class="calc-note">
+                    <h3>Dlaczego to tylko szacunek?</h3>
+                    <p>Dwa modele o takich samych wymiarach mogą mieć zupełnie inną cenę. Liczy się nie tylko rozmiar, ale też ilość materiału, podpory, dokładność i czas druku.</p>
+                    <ul>
+                        <li>małe proste elementy zwykle od 30 zł,</li>
+                        <li>projekt CAD wyceniam osobno,</li>
+                        <li>większe lub techniczne części wymagają sprawdzenia pliku,</li>
+                        <li>maksymalny wymiar pojedynczego wydruku: około 256 × 256 × 256 mm.</li>
+                    </ul>
+                    <a href="#kontakt" class="btn">Wyślij plik lub zdjęcie</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="cennik">
+        <h2 class="reveal">Przykładowe ceny</h2>
+        <p class="section-subtitle reveal">To widełki, nie sztywny cennik. Konkretna cena zależy od modelu, materiału i tego, czy trzeba coś projektować.</p>
+        <div class="pricing-grid">
+            <div class="pricing-card reveal">
+                <h3>Mały prosty wydruk</h3>
+                <div class="price">od 30 zł</div>
+                <p>Zaślepki, dystanse, małe uchwyty, drobne elementy użytkowe.</p>
+            </div>
+            <div class="pricing-card reveal" style="transition-delay: 0.1s;">
+                <h3>Część techniczna / adapter</h3>
+                <div class="price">od 50-80 zł</div>
+                <p>Elementy wymagające większej dokładności, mocniejszego materiału albo testów wymiaru.</p>
+            </div>
+            <div class="pricing-card reveal" style="transition-delay: 0.2s;">
+                <h3>Projekt CAD</h3>
+                <div class="price">wycena indywidualna</div>
+                <p>Odtworzenie uszkodzonej części, model od zera, poprawki i wersje testowe.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="bg-light">
+        <section id="faq">
+            <h2 class="reveal">Najczęstsze pytania</h2>
+            <p class="section-subtitle reveal">Krótko i konkretnie — zanim napiszesz, możesz sprawdzić podstawy.</p>
+            <div class="faq-grid">
+                <div class="faq-card reveal">
+                    <h3>Czy muszę mieć gotowy plik 3D?</h3>
+                    <p>Nie. Możesz wysłać zdjęcie, szkic albo wymiary. Jeżeli część da się sensownie odtworzyć, przygotuję projekt CAD.</p>
+                </div>
+                <div class="faq-card reveal" style="transition-delay: 0.1s;">
+                    <h3>Jaki materiał wybrać?</h3>
+                    <p>PLA sprawdza się w prostych domowych wydrukach. PETG jest lepszy do części użytkowych. TPU nadaje się do elementów elastycznych.</p>
+                </div>
+                <div class="faq-card reveal" style="transition-delay: 0.2s;">
+                    <h3>Czy druk 3D zawsze zastąpi oryginalną część?</h3>
+                    <p>Nie zawsze. Przy wysokiej temperaturze, dużym obciążeniu albo elementach bezpieczeństwa trzeba uważać. Powiem wprost, jeżeli wydruk nie ma sensu.</p>
+                </div>
+                <div class="faq-card reveal" style="transition-delay: 0.3s;">
+                    <h3>Ile trwa realizacja?</h3>
+                    <p>Proste wydruki zwykle da się zrealizować szybko. Części projektowane od zera wymagają więcej czasu, szczególnie gdy trzeba zrobić poprawki.</p>
+                </div>
             </div>
         </section>
     </div>
 
     <section id="kontakt" class="reveal" style="text-align:center;">
-        <h2>Zapraszam do kontaktu</h2>
-        <p class="section-subtitle">Masz gotowy plik lub tylko zarys pomysłu? Napisz!</p>
-        <div style="background: #eff6ff; display: inline-block; padding: 2.5rem 5rem; border-radius: 25px; border: 1px solid #dbeafe;">
+        <h2>Wyślij pomysł do wyceny</h2>
+        <p class="section-subtitle">Masz gotowy plik, uszkodzoną część albo tylko pomysł? Napisz, co chcesz zrobić. Najlepiej dołącz zdjęcia, wymiary albo plik STL/3MF.</p>
+        <div class="contact-box">
             <p style="color: #64748b; margin-bottom: 0.5rem;">Adres e-mail:</p>
-            <a href="mailto:dgarbicz@gmail.com" style="font-size: 1.8rem; color: var(--primary); font-weight: 800; text-decoration: none; word-break: break-all;">
+            <a class="email" href="mailto:dgarbicz@gmail.com?subject=Zapytanie%20o%20druk%203D%20-%203D%20Make&body=Cze%C5%9B%C4%87%2C%0A%0AChcia%C5%82bym%2Fchcia%C5%82abym%20wyceni%C4%87%20druk%203D.%0A%0AOpis%20cz%C4%99%C5%9Bci%20lub%20pomys%C5%82u%3A%0A%0AWymiary%20orientacyjne%3A%0A%0AMateria%C5%82%20%28je%C5%9Bli%20wiem%29%3A%0A%0ACzy%20mam%20plik%203D%3A%20tak%2Fnie%0A">
                 dgarbicz@gmail.com
             </a>
+            <p style="color:#64748b; margin-top: 1.2rem;">W treści wiadomości opisz zastosowanie elementu. Przy częściach zamiennych przydadzą się zdjęcia z kilku stron i podstawowe wymiary.</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 3D Make - Dominik Garbicz. <br> Profesjonalne usługi druku 3D.</p>
+        <p>&copy; 2026 3D Make - Dominik Garbicz.<br>Druk 3D praktycznych części, uchwytów, adapterów i zamienników na wymiar.</p>
     </footer>
 
-    <!-- The Modal (Lightbox) -->
     <div id="myModal" class="modal" onclick="closeModal()">
         <span class="close" onclick="closeModal()" aria-label="Zamknij podgląd" role="button">&times;</span>
         <img class="modal-content" id="img01" alt="Podgląd zdjęcia">
@@ -692,8 +965,8 @@
 
     <script>
         function openModal(src) {
-            var modal = document.getElementById("myModal");
-            var modalImg = document.getElementById("img01");
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("img01");
             modal.style.display = "flex";
             modal.style.alignItems = "center";
             modal.style.justifyContent = "center";
@@ -701,26 +974,23 @@
         }
 
         function closeModal() {
-            var modal = document.getElementById("myModal");
+            const modal = document.getElementById("myModal");
             modal.style.display = "none";
         }
 
         document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                closeModal();
-            }
+            if (event.key === "Escape") closeModal();
         });
 
-        // Zoptymalizowany pod Bambu Lab A1 algorytm kalkulatora
         function calc() {
             const x = parseFloat(document.getElementById('dim-x').value);
             const y = parseFloat(document.getElementById('dim-y').value);
             const z = parseFloat(document.getElementById('dim-z').value);
             const matMultiplier = parseFloat(document.getElementById('mat').value);
             const resElement = document.getElementById('res');
-            
+
             if (isNaN(x) || isNaN(y) || isNaN(z)) {
-                resElement.style.fontSize = "2.2rem";
+                resElement.style.fontSize = "1.8rem";
                 resElement.innerText = "Wpisz wymiary";
                 return;
             }
@@ -730,48 +1000,39 @@
                 resElement.innerText = "Błędne wymiary";
                 return;
             }
-            
-            // Limit pola roboczego Bambu Lab A1
+
             if (x > 256 || y > 256 || z > 256) {
-                resElement.style.fontSize = "1.5rem";
-                resElement.innerText = "Za duże na 1 wydruk (max 256mm)";
+                resElement.style.fontSize = "1.35rem";
+                resElement.innerText = "Za duże na 1 wydruk (max ok. 256 mm)";
                 return;
             }
 
             const boxVolume = (x * y * z) / 1000;
-            
-            // Inteligentny współczynnik wypełnienia pudełka
-            let volumeRatio = 0.20; 
-            if (boxVolume > 500) volumeRatio = 0.12; 
+
+            let volumeRatio = 0.20;
+            if (boxVolume > 500) volumeRatio = 0.12;
             if (boxVolume > 2000) volumeRatio = 0.07;
 
             const estimatedWeight = boxVolume * volumeRatio * 1.24;
+            const setupCost = 20;
+            const materialCostPerGram = 0.10 * matMultiplier;
+            const machineRatePerHour = 12;
 
-            // Parametry rynkowe dostosowane do szybkiej drukarki
-            const setupCost = 20; // Opłata stała obniżona dla atrakcyjności
-            const materialCostPerGram = 0.10 * matMultiplier; 
-            const machineRatePerHour = 12; 
-            
-            // Szacowana prędkość druku dla Bambu A1
-            let printSpeedGramsPerHour = 80; 
-            if (matMultiplier > 1.4) printSpeedGramsPerHour = 25; // TPU dużo wolniej
+            let printSpeedGramsPerHour = 80;
+            if (matMultiplier > 1.4) printSpeedGramsPerHour = 25;
 
             const estimatedTime = estimatedWeight / printSpeedGramsPerHour;
-            
             let cost = setupCost + (estimatedWeight * materialCostPerGram) + (estimatedTime * machineRatePerHour);
-            
-            // Minimalna kwota zlecenia
+
             if (cost < 30) cost = 30;
-            
+
             resElement.style.fontSize = "2.2rem";
-            resElement.innerText = "~" + Math.round(cost) + " PLN";
+            resElement.innerText = "około " + Math.round(cost) + " PLN";
         }
 
         document.querySelectorAll('.calc-trigger').forEach(input => {
             input.addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    calc();
-                }
+                if (e.key === 'Enter') calc();
             });
         });
 
@@ -780,12 +1041,11 @@
             menu.classList.toggle('active');
         }
 
-        // Animacje scrolla
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
                 root: null,
                 rootMargin: "0px",
-                threshold: 0.15 
+                threshold: 0.15
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
