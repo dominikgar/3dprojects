@@ -33,7 +33,7 @@
         }
     }
     function track(name) {
-        if (!allowed || !configured || !['click_contact', 'click_quote', 'calculator_use', 'portfolio_view'].includes(name)) return;
+        if (!allowed || !configured || !['click_contact', 'click_quote', 'calculator_use', 'portfolio_view', 'generate_lead'].includes(name)) return;
         gtag('event', name, { page_location: location.origin + location.pathname, page_referrer: '' });
     }
     function observePortfolio() {
@@ -104,6 +104,7 @@
         if (target) track(target.dataset.analyticsEvent);
     });
     window.siteAnalytics = Object.freeze({
+        quoteSubmitted() { track('generate_lead'); },
         cancelCalculator() { clearTimeout(calculatorTimer); },
         calculatorUsed() {
             clearTimeout(calculatorTimer);

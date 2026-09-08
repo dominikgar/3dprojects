@@ -21,20 +21,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260908-quote">
     <script src="analytics-config.js" defer></script>
-    <script src="analytics.js" defer></script>
+    <script src="analytics.js?v=20260908-quote" defer></script>
+    <script src="quote.js?v=20260908-quote" defer></script>
 </head>
 <body>
 
     <nav>
         <a href="#" class="logo">3D<span> Make</span></a>
 
-        <div class="menu-toggle" onclick="toggleMenu()" aria-label="Menu główne" role="button" tabindex="0">
+        <button type="button" class="menu-toggle" onclick="toggleMenu()" aria-label="Menu główne" aria-expanded="false" aria-controls="nav-menu">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
-        </div>
+        </button>
 
         <ul id="nav-menu">
             <li><a href="#omnie" onclick="toggleMenu()">O mnie</a></li>
@@ -42,7 +43,7 @@
             <li><a href="#oferta" onclick="toggleMenu()">Oferta</a></li>
             <li><a href="#specyfikacja" onclick="toggleMenu()">Specyfikacja</a></li>
             <li><a href="#portfolio" onclick="toggleMenu()">Realizacje</a></li>
-            <li><a data-analytics-event="click_quote" href="#kalkulator" onclick="toggleMenu()">Wycena</a></li>
+            <li><a data-analytics-event="click_quote" href="#kontakt" onclick="toggleMenu()">Wycena</a></li>
             <li><a data-analytics-event="click_contact" href="#kontakt" onclick="toggleMenu()" class="nav-cta">Kontakt</a></li>
         </ul>
     </nav>
@@ -54,9 +55,10 @@
                 <h1>Zaprojektuję i wydrukuję część, której <span>nie możesz kupić.</span></h1>
                 <p>Uchwyty, adaptery, elementy naprawcze, części zamienne i prototypy. Wyślij zdjęcie, szkic albo plik STL/3MF — sprawdzę, czy da się to wykonać i podam konkretną wycenę.</p>
                 <div class="hero-actions">
-                    <a href="#kontakt" data-analytics-event="click_quote" class="btn">Wyślij pomysł do wyceny</a>
+                    <a href="#kontakt" data-analytics-event="click_quote" class="btn">Wyślij zapytanie do wyceny</a>
                     <a href="#portfolio" class="btn btn-secondary">Zobacz realizacje</a>
                 </div>
+                <p class="hero-note">Wstępna ocena i wycena są bezpłatne. Projekt i druk zaczynam po akceptacji kosztów.</p>
                 <div class="trust-list">
                     <span>FDM / Bambu Lab A1</span>
                     <span>PLA / PETG / TPU</span>
@@ -76,17 +78,6 @@
         </header>
     </div>
 
-    <section id="omnie" class="reveal">
-        <span class="section-kicker">O projekcie</span>
-        <h2>Pasja, która rozwiązuje praktyczne problemy</h2>
-        <p class="section-subtitle">Nazywam się Dominik Garbicz. Druk 3D traktuję nie tylko jako hobby, ale jako sposób na tworzenie rzeczy, których często brakuje w domu, warsztacie albo projekcie DIY.</p>
-        <div class="intro-box">
-            <p>W <strong>3D Make</strong> projektuję i drukuję praktyczne elementy: uchwyty, adaptery, zamienniki uszkodzonych części, prototypy i drobne usprawnienia na wymiar. Najbardziej lubię projekty, w których trzeba odtworzyć brakującą część albo wymyślić prostsze rozwiązanie realnego problemu.</p>
-            <br>
-            <p>Pracuję na drukarce <strong>Bambu Lab A1</strong> i korzystam z materiałów takich jak <strong>PLA, PETG, PETG+</strong> oraz <strong>TPU</strong>. Mogę wydrukować gotowy plik albo przygotować model CAD na podstawie zdjęcia, wymiarów, szkicu lub uszkodzonego elementu.</p>
-        </div>
-    </section>
-
     <div class="bg-light">
         <section id="co-zrobic">
             <span class="section-kicker reveal">Od czego zacząć</span>
@@ -95,15 +86,18 @@
             <div class="grid-3">
                 <div class="card reveal">
                     <h3>Mam gotowy plik 3D</h3>
-                    <p>Prześlij STL, 3MF albo OBJ. Dobiorę materiał, ustawienia druku i podam orientacyjny koszt oraz termin realizacji.</p>
+                    <p>Prześlij STL, 3MF albo OBJ. Dobiorę materiał, ustawienia druku i podam koszt oraz termin realizacji.</p>
+                    <a class="text-cta" href="#kontakt" data-quote-type="file" data-analytics-event="click_quote">Wyceń druk z pliku →</a>
                 </div>
                 <div class="card reveal" style="transition-delay: 0.1s;">
                     <h3>Mam uszkodzoną część</h3>
                     <p>Wyślij zdjęcie, wymiary albo starą część. Sprawdzę, czy da się ją odtworzyć i wydrukować zamiennik.</p>
+                    <a class="text-cta" href="#kontakt" data-quote-type="repair" data-analytics-event="click_quote">Pokaż uszkodzoną część →</a>
                 </div>
                 <div class="card reveal" style="transition-delay: 0.2s;">
                     <h3>Mam pomysł, ale nie mam projektu</h3>
-                    <p>Opisz zastosowanie. Zaproponuję rozwiązanie, przygotuję model CAD i wydrukuję wersję testową.</p>
+                    <p>Opisz zastosowanie. Najpierw ustalimy zakres i cenę projektu, a następnie potrzebne próby.</p>
+                    <a class="text-cta" href="#kontakt" data-quote-type="design" data-analytics-event="click_quote">Opisz nowy element →</a>
                 </div>
             </div>
         </section>
@@ -211,12 +205,12 @@
                 <div class="process-card reveal" style="transition-delay: 0.2s;">
                     <div class="process-number">3</div>
                     <h3>Dostajesz wycenę</h3>
-                    <p>Podaję koszt druku, ewentualnego projektu CAD i orientacyjny termin. Nic nie drukuję bez akceptacji.</p>
+                    <p>Osobno podaję koszt projektu, prób, druku docelowego i dostawy oraz ustalam termin i zakres korekt. Pracę zaczynam po Twojej akceptacji.</p>
                 </div>
                 <div class="process-card reveal" style="transition-delay: 0.3s;">
                     <div class="process-number">4</div>
-                    <h3>Drukuję i wysyłam</h3>
-                    <p>Po wykonaniu elementu pakuję go bezpiecznie i wysyłam Paczkomatem InPost lub kurierem.</p>
+                    <h3>Sprawdzamy dopasowanie</h3>
+                    <p>Gdy potrzebna jest próba, najpierw powstaje prototyp. Po zatwierdzeniu dopasowania wykonuję ustaloną serię i wysyłam gotowe części.</p>
                 </div>
             </div>
         </section>
@@ -273,69 +267,99 @@
         </div>
     </section>
 
-    <div style="padding: 0 1rem;">
-        <section id="kalkulator" class="calculator-section reveal">
-            <span class="section-kicker">Wycena</span>
-            <h2>Orientacyjny koszt druku</h2>
-            <p class="section-subtitle" style="color:#cbd5e1;">Kalkulator pokazuje tylko przybliżenie. Najdokładniejszą wycenę zrobię po otrzymaniu pliku, zdjęcia albo wymiarów części.</p>
-
-            <div class="calc-layout">
-                <div class="calc-container">
-                    <label class="calc-label">Wymiary modelu (mm):</label>
-                    <div class="dims-wrapper">
-                        <input type="number" id="dim-x" class="calc-input calc-trigger" placeholder="Długość" oninput="calc()">
-                        <input type="number" id="dim-y" class="calc-input calc-trigger" placeholder="Szerokość" oninput="calc()">
-                        <input type="number" id="dim-z" class="calc-input calc-trigger" placeholder="Wysokość" oninput="calc()">
-                    </div>
-
-                    <label class="calc-label">Rodzaj materiału:</label>
-                    <select id="mat" class="calc-input calc-trigger" onchange="calc()">
-                        <option value="1">PLA - standardowy</option>
-                        <option value="1.2">PETG - wytrzymalszy</option>
-                        <option value="1.5">TPU - elastyczny</option>
-                    </select>
-
-                    <button class="btn" style="width:100%;" onclick="calc()">Policz orientacyjnie</button>
-                    <div id="res">Wpisz wymiary</div>
-                    <p class="result-subtext">To nie jest ostateczna oferta. Cena zależy od geometrii modelu, wypełnienia, czasu druku, podpór i ewentualnego projektowania CAD.</p>
-                </div>
-
-                <div class="calc-note">
-                    <h3>Dlaczego to tylko szacunek?</h3>
-                    <p>Dwa modele o takich samych wymiarach mogą mieć zupełnie inną cenę. Liczy się nie tylko rozmiar, ale też ilość materiału, podpory, dokładność i czas druku.</p>
-                    <ul>
-                        <li>małe proste elementy zwykle od 30 zł,</li>
-                        <li>projekt CAD wyceniam osobno,</li>
-                        <li>większe lub techniczne części wymagają sprawdzenia pliku,</li>
-                        <li>maksymalny wymiar pojedynczego wydruku: około 256 × 256 × 256 mm.</li>
-                    </ul>
-                    <a href="#kontakt" data-analytics-event="click_quote" class="btn">Wyślij plik lub zdjęcie</a>
-                </div>
-            </div>
-        </section>
-    </div>
-
     <section id="cennik">
-        <span class="section-kicker reveal">Koszt</span>
-        <h2 class="reveal">Przykładowe ceny</h2>
-        <p class="section-subtitle reveal">To widełki, nie sztywny cennik. Konkretna cena zależy od modelu, materiału i tego, czy trzeba coś projektować.</p>
+        <span id="kalkulator" class="anchor-alias" aria-hidden="true"></span>
+        <span class="section-kicker reveal">Koszt bez niedomówień</span>
+        <h2 class="reveal">Za co płacisz?</h2>
+        <p class="section-subtitle reveal">Wstępna ocena i przygotowanie wyceny są bezpłatne. Płatne prace rozpoczynam dopiero po uzgodnieniu zakresu i ceny.</p>
         <div class="grid-3">
             <div class="pricing-card reveal">
-                <h3>Mały prosty wydruk</h3>
+                <h3>Druk z gotowego pliku</h3>
                 <div class="price">od 30 zł</div>
-                <p>Zaślepki, dystanse, małe uchwyty, drobne elementy użytkowe.</p>
+                <p>Orientacyjna cena małego, prostego wydruku z gotowego modelu. Nie obejmuje projektowania, prób dopasowania ani dostawy. Cenę potwierdzam po sprawdzeniu pliku.</p>
             </div>
-            <div class="pricing-card reveal" style="transition-delay: 0.1s;">
-                <h3>Część techniczna / adapter</h3>
-                <div class="price">od 50-80 zł</div>
-                <p>Elementy wymagające większej dokładności, mocniejszego materiału albo testów wymiaru.</p>
+            <div class="pricing-card reveal">
+                <h3>Projekt i dopasowanie</h3>
+                <div class="price">osobna wycena</div>
+                <p>Odtworzenie części lub zaprojektowanie nowej. Przed rozpoczęciem ustalamy wymiary, koszt projektu i zakres korekt. Potrzebne wydruki próbne wyceniam osobno.</p>
             </div>
-            <div class="pricing-card reveal" style="transition-delay: 0.2s;">
-                <h3>Projekt CAD</h3>
-                <div class="price">indywidualnie</div>
-                <p>Odtworzenie uszkodzonej części, model od zera, poprawki i wersje testowe.</p>
+            <div class="pricing-card reveal">
+                <h3>Prototyp i mała seria</h3>
+                <div class="price">etapami</div>
+                <p>Przy elementach wymagających dopasowania zaczynamy od uzgodnionej próbki. Po jej sprawdzeniu zatwierdzasz serię. Wiesz, ile kosztuje przygotowanie, druk i wysyłka.</p>
             </div>
         </div>
+    </section>
+
+    <section id="kontakt" class="quote-section">
+        <span class="section-kicker">Bezpłatna wstępna wycena</span>
+        <h2>Co chcesz wykonać?</h2>
+        <p class="section-subtitle">Wybierz rodzaj zlecenia i opisz zastosowanie. Nie musisz znać materiału ani mieć kompletnej dokumentacji.</p>
+        <form id="quote-form" class="quote-form" action="https://formsubmit.co/2bbd5a5ce3b29c50aa6c68c2d02b6490" method="post" enctype="multipart/form-data" hidden>
+            <fieldset id="quote-fields">
+                <legend class="sr-only">Szczegóły zapytania do wyceny</legend>
+                <fieldset class="quote-types">
+                    <legend>1. Czego potrzebujesz? <span class="required-note">(wymagane)</span></legend>
+                    <div class="quote-type-grid">
+                        <label><input type="radio" name="Rodzaj zlecenia" value="file" required><span>Mam plik do wydrukowania</span></label>
+                        <label><input type="radio" name="Rodzaj zlecenia" value="repair"><span>Chcę odtworzyć uszkodzoną część</span></label>
+                        <label><input type="radio" name="Rodzaj zlecenia" value="design"><span>Potrzebuję zaprojektować nowy element</span></label>
+                    </div>
+                </fieldset>
+                <p id="quote-guidance" class="quote-guidance" aria-live="polite"></p>
+                <div class="quote-field">
+                    <label for="quote-description">2. Co to za element i do czego ma służyć? <span class="required-note">(wymagane)</span></label>
+                    <textarea id="quote-description" name="Opis i zastosowanie" rows="4" maxlength="5000" required aria-describedby="quote-description-help" placeholder="Np. uchwyt do czujnika, który chcę zamocować na ścianie w garażu…"></textarea>
+                    <p id="quote-description-help" class="field-help">Napisz, do czego ma pasować i w jakich warunkach będzie pracować: w domu, na zewnątrz, przy cieple lub obciążeniu.</p>
+                </div>
+                <div class="quote-field">
+                    <label for="quote-files">Zdjęcia, szkic lub plik 3D <span class="required-note">(opcjonalnie)</span></label>
+                    <input id="quote-files" type="file" name="files" multiple accept=".jpg,.jpeg,.png,.webp,.heic,.pdf,.stl,.3mf,.obj,.step,.stp,.zip" aria-describedby="quote-file-help quote-file-status">
+                    <p id="quote-file-help" class="field-help">Do 5 plików, łącznie do 10 MB. JPG, PNG, WebP, HEIC, PDF, STL, 3MF, OBJ, STEP lub ZIP. Większe pliki możesz udostępnić linkiem w szczegółach poniżej.</p>
+                    <p id="quote-file-status" class="field-help" aria-live="polite">Nie wybrano plików.</p>
+                </div>
+                <div class="quote-row">
+                    <div class="quote-field">
+                        <label for="quote-quantity">Liczba sztuk <span class="required-note">(wymagane)</span></label>
+                        <input id="quote-quantity" name="Liczba sztuk" type="number" value="1" min="1" max="10000" step="1" inputmode="numeric" required>
+                    </div>
+                    <div class="quote-field">
+                        <label for="quote-email">Twój e-mail <span class="required-note">(wymagane)</span></label>
+                        <input id="quote-email" name="email" type="email" autocomplete="email" maxlength="254" required placeholder="Na ten adres odpowiem">
+                    </div>
+                </div>
+                <p id="quote-batch" class="quote-guidance" hidden>Potrzebujesz kilku takich samych części? Jeśli trzeba sprawdzić pasowanie, możemy najpierw uzgodnić płatną próbkę, a po jej zatwierdzeniu wykonać resztę.</p>
+                <details class="quote-details">
+                    <summary>Dodatkowe szczegóły: wymiary, materiał, termin lub link</summary>
+                    <div class="quote-field">
+                        <label for="quote-dimensions">Wymiary i ważne miejsca dopasowania</label>
+                        <input id="quote-dimensions" name="Wymiary i dopasowanie" type="text" maxlength="500" placeholder="Np. 60 × 30 × 15 mm, otwory o średnicy 4 mm">
+                    </div>
+                    <div class="quote-row">
+                        <div class="quote-field">
+                            <label for="quote-material">Materiał</label>
+                            <select id="quote-material" name="Materiał"><option>Nie wiem — proszę o dobór</option><option>PLA</option><option>PETG / PETG+</option><option>TPU — elastyczny</option><option>Inny — opiszę w zapytaniu</option></select>
+                        </div>
+                        <div class="quote-field">
+                            <label for="quote-deadline">Oczekiwany termin</label>
+                            <input id="quote-deadline" name="Oczekiwany termin" type="text" maxlength="100" placeholder="Np. bez pośpiechu lub do 30 września">
+                        </div>
+                    </div>
+                    <div class="quote-field">
+                        <label for="quote-link">Link do plików</label>
+                        <input id="quote-link" name="Link do plików" type="url" maxlength="2000" placeholder="https://…" aria-describedby="quote-link-help">
+                        <p id="quote-link-help" class="field-help">Sprawdź, czy link pozwala pobrać pliki. Nie dołączaj haseł ani dokumentów niezwiązanych ze zleceniem.</p>
+                    </div>
+                </details>
+                <div class="quote-honey" aria-hidden="true"><label>Nie wypełniaj tego pola<input name="_honey" type="text" tabindex="-1" autocomplete="off"></label></div>
+                <p class="field-help quote-privacy">Dane i załączniki służą do odpowiedzi i wyceny. Formularz przesyła je przez FormSubmit na moją pocztę. <a href="prywatnosc.html">Informacje o prywatności</a>. Wysłanie zapytania nie oznacza zamówienia ani zgody na analitykę.</p>
+                <button class="btn" type="submit">Wyślij zapytanie do wyceny</button>
+            </fieldset>
+            <p id="quote-status" class="quote-status" role="status" tabindex="-1" hidden></p>
+            <button id="quote-restart" class="btn btn-secondary" type="button" hidden>Przygotuj kolejne zapytanie</button>
+        </form>
+        <noscript><p class="quote-fallback">Formularz wymaga JavaScript. Wyślij opis i załączniki bezpośrednio na poniższy adres.</p></noscript>
+        <p class="quote-fallback">Wolisz zwykły e-mail? <a href="mailto:dgarbicz@gmail.com?subject=Zapytanie%20o%20druk%203D%20-%203D%20Make" data-analytics-event="click_contact">dgarbicz@gmail.com</a></p>
     </section>
 
     <div class="bg-light">
@@ -364,14 +388,14 @@
         </section>
     </div>
 
-    <section id="kontakt" class="reveal" style="text-align:center;">
-        <span class="section-kicker">Kontakt</span>
-        <h2>Wyślij pomysł do wyceny</h2>
-        <p class="section-subtitle">Masz gotowy plik, uszkodzoną część albo tylko pomysł? Napisz, co chcesz zrobić. Najlepiej dołącz zdjęcia, wymiary albo plik STL/3MF.</p>
-        <div class="contact-box">
-            <p style="color: #cbd5e1; margin-bottom: 0.5rem;">Adres e-mail:</p>
-            <a data-analytics-event="click_contact" class="email" href="mailto:dgarbicz@gmail.com?subject=Zapytanie%20o%20druk%203D%20-%203D%20Make&body=Cze%C5%9B%C4%87%2C%0A%0AChcia%C5%82bym%2Fchcia%C5%82abym%20wyceni%C4%87%20druk%203D.%0A%0AOpis%20cz%C4%99%C5%9Bci%20lub%20pomys%C5%82u%3A%0A%0AWymiary%20orientacyjne%3A%0A%0AMateria%C5%82%20%28je%C5%9Bli%20wiem%29%3A%0A%0ACzy%20mam%20plik%203D%3A%20tak%2Fnie%0A">dgarbicz@gmail.com</a>
-            <p style="color:#cbd5e1;">W treści wiadomości opisz zastosowanie elementu. Przy częściach zamiennych przydadzą się zdjęcia z kilku stron i podstawowe wymiary.</p>
+    <section id="omnie" class="reveal">
+        <span class="section-kicker">O projekcie</span>
+        <h2>Pasja, która rozwiązuje praktyczne problemy</h2>
+        <p class="section-subtitle">Nazywam się Dominik Garbicz. Druk 3D traktuję nie tylko jako hobby, ale jako sposób na tworzenie rzeczy, których często brakuje w domu, warsztacie albo projekcie DIY.</p>
+        <div class="intro-box">
+            <p>W <strong>3D Make</strong> projektuję i drukuję praktyczne elementy: uchwyty, adaptery, zamienniki uszkodzonych części, prototypy i drobne usprawnienia na wymiar. Najbardziej lubię projekty, w których trzeba odtworzyć brakującą część albo wymyślić prostsze rozwiązanie realnego problemu.</p>
+            <br>
+            <p>Pracuję na drukarce <strong>Bambu Lab A1</strong> i korzystam z materiałów takich jak <strong>PLA, PETG, PETG+</strong> oraz <strong>TPU</strong>. Mogę wydrukować gotowy plik albo przygotować model CAD na podstawie zdjęcia, wymiarów, szkicu lub uszkodzonego elementu.</p>
         </div>
     </section>
 
@@ -406,66 +430,15 @@
             if (event.key === "Escape") closeModal();
         });
 
-        function calc() {
-            window.siteAnalytics?.cancelCalculator();
-            const x = parseFloat(document.getElementById('dim-x').value);
-            const y = parseFloat(document.getElementById('dim-y').value);
-            const z = parseFloat(document.getElementById('dim-z').value);
-            const matMultiplier = parseFloat(document.getElementById('mat').value);
-            const resElement = document.getElementById('res');
-
-            if (isNaN(x) || isNaN(y) || isNaN(z)) {
-                resElement.style.fontSize = "1.8rem";
-                resElement.innerText = "Wpisz wymiary";
-                return;
-            }
-
-            if (x <= 0 || y <= 0 || z <= 0) {
-                resElement.style.fontSize = "1.8rem";
-                resElement.innerText = "Błędne wymiary";
-                return;
-            }
-
-            if (x > 256 || y > 256 || z > 256) {
-                resElement.style.fontSize = "1.28rem";
-                resElement.innerText = "Za duże na 1 wydruk (max ok. 256 mm)";
-                return;
-            }
-
-            window.siteAnalytics?.calculatorUsed();
-
-            const boxVolume = (x * y * z) / 1000;
-            let volumeRatio = 0.20;
-            if (boxVolume > 500) volumeRatio = 0.12;
-            if (boxVolume > 2000) volumeRatio = 0.07;
-
-            const estimatedWeight = boxVolume * volumeRatio * 1.24;
-            const setupCost = 20;
-            const materialCostPerGram = 0.10 * matMultiplier;
-            const machineRatePerHour = 12;
-            let printSpeedGramsPerHour = 80;
-            if (matMultiplier > 1.4) printSpeedGramsPerHour = 25;
-
-            const estimatedTime = estimatedWeight / printSpeedGramsPerHour;
-            let cost = setupCost + (estimatedWeight * materialCostPerGram) + (estimatedTime * machineRatePerHour);
-            if (cost < 30) cost = 30;
-
-            resElement.style.fontSize = "2rem";
-            resElement.innerText = "około " + Math.round(cost) + " PLN";
-        }
-
-        document.querySelectorAll('.calc-trigger').forEach(input => {
-            input.addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') calc();
-            });
-        });
-
         function toggleMenu() {
             const menu = document.getElementById('nav-menu');
-            menu.classList.toggle('active');
+            const expanded = menu.classList.toggle('active');
+            document.querySelector('.menu-toggle').setAttribute('aria-expanded', String(expanded));
         }
 
         document.addEventListener("DOMContentLoaded", function() {
+            if (!("IntersectionObserver" in window)) return;
+            document.documentElement.classList.add("reveal-ready");
             const observerOptions = {
                 root: null,
                 rootMargin: "0px",

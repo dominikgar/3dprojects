@@ -15,17 +15,18 @@ Basic Consent Mode v2: wszystkie cztery sygnały domyślnie `denied`; tylko `ana
 | Zdarzenie | Moment |
 | --- | --- |
 | `click_contact` | Kliknięcie kontaktu w menu lub adresu e-mail |
-| `click_quote` | Kliknięcie CTA wyceny lub linku do kalkulatora |
-| `calculator_use` | Poprawne obliczenie; opóźnienie 800 ms scala wpisywanie, błędny wynik anuluje oczekujący pomiar |
+| `click_quote` | Kliknięcie CTA wyceny lub wybór ścieżki zapytania |
+| `generate_lead` | Potwierdzone przyjęcie formularza przez usługę wysyłkową; tylko po zgodzie na analitykę |
+| `calculator_use` | Zdarzenie historyczne; kalkulator usunięto 8.09.2026, a pomocnicze API zachowano dla zgodności ze starszymi kartami strony |
 | `portfolio_view` | Co najmniej 15% sekcji portfolio w widoku, raz na odsłonę, po zgodzie |
 
-Brak buforowania aktywności sprzed zgody. Zdarzenia mają tylko nazwę i oczyszczony adres strony (bez query/hash/referrera). GA4 zbiera również swoje standardowe metadane techniczne. Kliknięcie wyceny jest intencją, nie potwierdzeniem wysłanego zapytania. Automatyczny `page_view` występuje przy uruchomieniu GA4.
+Brak buforowania aktywności sprzed zgody. Zdarzenia mają tylko nazwę i oczyszczony adres strony (bez query/hash/referrera). GA4 zbiera również swoje standardowe metadane techniczne. Kliknięcie wyceny jest intencją, nie potwierdzeniem wysłanego zapytania. `generate_lead` oznacza przyjęte zapytanie, nie zamówienie ani gwarancję dostarczenia przez operatora poczty. Nie zawiera e-maila, treści, plików, ich nazw ani wartości pól. Zgłoszenia bez zgody na analitykę docierają na e-mail, ale nie pojawiają się w GA4. Automatyczny `page_view` występuje przy uruchomieniu GA4.
 
 ## Weryfikacja przed uruchomieniem
 
 - Nowy profil: brak żądań `googletagmanager.com/gtag` i `google-analytics.com/g/collect` przed decyzją oraz po odmowie i odświeżeniu.
 - Z poprawnym ID i zgodą: jeden tag, `analytics_storage=granted`, trzy zgody reklamowe nadal denied. Sprawdź w Tag Assistant i raporcie czasu rzeczywistego GA4 (DebugView wymaga osobnego włączenia trybu debugowania).
-- Sprawdź wszystkie cztery zdarzenia, puste/ujemne/zbyt duże wymiary, wielokrotne wpisywanie, portfolio po przewinięciu i zgodę udzieloną, gdy portfolio już widać.
+- Sprawdź kliknięcia, portfolio i przyjęcie formularza. Błąd wysyłki, walidacji, brak aktywacji usługi, błędne potwierdzenie i powtórne kliknięcie podczas wysyłania nie mogą generować `generate_lead`.
 - Wycofaj zgodę, sprawdź cookies, przeładowanie i brak nowych pomiarów; powtórz z drugą kartą, zablokowanym localStorage i wygasłą decyzją.
 - Sprawdź klawiaturę i telefon. Bez JS strona nadal działa w dotychczasowym zakresie; analityka nigdy nie jest ładowana.
 
@@ -35,4 +36,4 @@ Brak buforowania aktywności sprzed zgody. Zdarzenia mają tylko nazwę i oczysz
 - https://developers.google.com/tag-platform/security/concepts/consent-mode
 - https://www.edpb.europa.eu/system/files/2023-01/edpb_20230118_report_cookie_banner_taskforce_en.pdf
 
-Testy lokalne: `node --test tests/analytics.test.cjs`. Nie wymagają połączeń z Google.
+Testy lokalne: `node --test tests/*.test.cjs`. Nie wymagają połączeń z Google ani wysyłania poczty. Obsługa formularza: `FORMULARZ.md`.

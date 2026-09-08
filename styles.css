@@ -579,99 +579,6 @@
         .case-line { display: block; margin-top: 0.5rem; }
         .case-line strong { color: var(--text-strong); }
 
-        .calculator-section {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 4.5rem 2rem;
-            border: 1px solid var(--line);
-            border-radius: 34px;
-            background: linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,41,59,0.94));
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .calculator-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 20% 10%, rgba(249,115,22,0.2), transparent 30%);
-            pointer-events: none;
-        }
-
-        .calculator-section > * { position: relative; z-index: 1; }
-        .calculator-section h2 { color: white; }
-
-        .calc-layout {
-            display: grid;
-            grid-template-columns: minmax(280px, 1fr) minmax(280px, 0.88fr);
-            gap: 1.25rem;
-            align-items: stretch;
-        }
-
-        .calc-container,
-        .calc-note {
-            padding: 1.65rem;
-            border: 1px solid rgba(255,255,255,0.13);
-            border-radius: var(--radius);
-            background: rgba(255,255,255,0.07);
-            backdrop-filter: blur(12px);
-        }
-
-        .calc-note h3 { color: white; margin-bottom: 0.9rem; }
-        .calc-note p, .calc-note li { color: #cbd5e1; }
-        .calc-note ul { padding-left: 1.2rem; margin: 1rem 0 1.3rem; }
-
-        .calc-label {
-            display: block;
-            margin-bottom: 0.45rem;
-            color: #cbd5e1;
-            font-size: 0.88rem;
-            font-weight: 800;
-        }
-
-        .dims-wrapper {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.75rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .calc-input {
-            width: 100%;
-            padding: 0.85rem 0.9rem;
-            border: 1px solid rgba(255,255,255,0.18);
-            border-radius: 14px;
-            background: rgba(255,255,255,0.94);
-            color: #0f172a;
-            font-size: 1rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .dims-wrapper .calc-input { margin-bottom: 0; }
-
-        .calc-input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.18);
-        }
-
-        #res {
-            margin-top: 1.35rem;
-            text-align: center;
-            color: #fdba74;
-            font-size: 2rem;
-            font-weight: 900;
-        }
-
-        .result-subtext {
-            margin-top: 0.85rem;
-            color: #94a3b8;
-            font-size: 0.78rem;
-            text-align: center;
-            line-height: 1.55;
-        }
-
         .pricing-card .price {
             margin: 0.5rem 0 0.9rem;
             color: #fdba74;
@@ -750,13 +657,13 @@
 
         .close:hover { color: #fdba74; }
 
-        .reveal {
+        .reveal-ready .reveal {
             opacity: 0;
             transform: translateY(28px);
             transition: opacity 0.7s ease, transform 0.7s ease;
         }
 
-        .reveal.active {
+        .reveal-ready .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
@@ -791,8 +698,9 @@
             nav ul li a { display: block; width: 100%; padding: 1rem; }
             .nav-cta { border-radius: 0; background: var(--accent); }
             section { padding: 4rem 1.25rem; }
-            .hero { padding: 4rem 1.25rem; min-height: auto; }
-            .hero-card { order: -1; }
+            .hero { padding: 2.5rem 1.25rem; min-height: auto; gap: 2rem; }
+            .hero-card { order: 0; }
+            .hero h1 { font-size: clamp(2.25rem, 8vw, 3.5rem); line-height: 1.06; letter-spacing: -0.05em; }
             .printer-mockup { min-height: 310px; }
             .hero-spec { grid-template-columns: 1fr; left: 1.2rem; right: 1.2rem; bottom: 1.2rem; }
             .calc-layout { grid-template-columns: 1fr; }
@@ -816,3 +724,50 @@
 .article-content p, .article-content ul, .article-content ol { margin-bottom: 1.25rem; }
 .article-content ul, .article-content ol { padding-left: 1.5rem; }
 @media (max-width: 600px) { .consent-banner { padding: 1rem; } .consent-actions button { width: 100%; } }
+
+/* Guided quote request; uses the existing navy/orange theme. */
+.menu-toggle { background: transparent; border: 0; padding: .5rem; }
+.hero .hero-note { font-size: .95rem; margin-bottom: 1.4rem; color: #fed7aa; }
+.text-cta { display: inline-block; margin-top: 1rem; padding: .4rem 0; font-weight: 700; color: #fdba74; }
+.anchor-alias, #kontakt { scroll-margin-top: 6rem; }
+.quote-section { max-width: 1100px; }
+.quote-form { background: var(--panel); border: 1px solid var(--line-strong); border-radius: 24px; padding: 2rem; }
+.quote-form fieldset { border: 0; min-width: 0; padding: 0; margin: 0; }
+.quote-form legend { margin-bottom: .8rem; font-weight: 700; font-size: 1rem; }
+.quote-type-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+.quote-type-grid label { display: flex; align-items: flex-start; gap: .65rem; border: 1px solid var(--line-strong); border-radius: 14px; padding: 1rem; cursor: pointer; background: var(--panel-2); }
+.quote-type-grid label:has(:checked) { border-color: #fb923c; background: #332418; color: #ffedd5; }
+.quote-type-grid input { margin-top: .3rem; width: 18px; height: 18px; flex: 0 0 auto; accent-color: #f97316; }
+.quote-guidance { padding: 1rem; margin: 1rem 0 1.5rem; background: #131e30; border-left: 3px solid #fb923c; border-radius: 0 10px 10px 0; color: #cbd5e1; }
+.quote-field { margin-bottom: 1.3rem; min-width: 0; }
+.quote-field > label { display: block; font-weight: 700; margin-bottom: .5rem; }
+.required-note { color: #b5c2d4; font-size: .875rem; font-weight: 400; }
+.quote-field input, .quote-field textarea, .quote-field select { display: block; width: 100%; min-width: 0; padding: .85rem; background: #0b1322; border: 1px solid #64748b; border-radius: 10px; color: #f1f5f9; font: inherit; }
+.quote-field input::placeholder, .quote-field textarea::placeholder { color: #a4b2c5; opacity: 1; }
+.quote-field textarea { resize: vertical; }
+.quote-field input[type=file] { padding: .7rem; font-size: .9rem; }
+.quote-field input::file-selector-button { padding: .55rem .7rem; margin-right: .65rem; border: 1px solid #64748b; border-radius: 7px; background: #26344b; color: white; cursor: pointer; font: inherit; }
+.quote-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 1.2rem; }
+.field-help { margin-top: .5rem; color: #b5c2d4; font-size: .9rem; line-height: 1.6; }
+.quote-details { border-block: 1px solid var(--line); padding: 1rem 0; margin-bottom: 1.3rem; }
+.quote-details summary { cursor: pointer; color: #fed7aa; padding: .4rem 0; }
+.quote-details[open] summary { margin-bottom: 1rem; }
+.quote-privacy { margin-bottom: 1.3rem; }
+.quote-form .btn { font-size: 1rem; }
+.quote-form fieldset:disabled { opacity: .65; }
+.quote-status { padding: 1.2rem; margin: 1rem 0; border-radius: 10px; border: 1px solid #64748b; background: #131e30; overflow-wrap: anywhere; }
+.quote-status[data-state=success] { border-color: #4ade80; color: #dcfce7; }
+.quote-status[data-state=error] { border-color: #fb923c; color: #ffedd5; }
+.quote-fallback { text-align: center; margin-top: 1.5rem; overflow-wrap: anywhere; }
+.quote-fallback a { color: #fdba74; }
+.quote-honey, .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@media (max-width: 700px) {
+    .quote-form { padding: 1.15rem; border-radius: 18px; }
+    .quote-type-grid, .quote-row { grid-template-columns: minmax(0, 1fr); }
+    .quote-row { gap: 0; }
+    .quote-form .btn { width: 100%; white-space: normal; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal-ready .reveal { opacity: 1; transform: none; transition: none; }
+}
