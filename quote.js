@@ -65,14 +65,15 @@
         receipt.searchParams.set('request', requestId);
         hidden('_subject', `3D Make — ${types[selectedType()].title} — ${quantity.value} szt. — ${requestId}`);
         hidden('Numer zapytania', requestId);
-        hidden('_template', 'table'); hidden('_captcha', 'false'); hidden('_next', receipt.href);
+        hidden('_template', 'table'); hidden('_captcha', 'true'); hidden('_next', receipt.href);
+        hidden('_autoresponse', `3D Make — potwierdzenie zapytania ${requestId}. Dziękuję za opis i przesłane materiały. Odpowiem z wyceną lub pytaniami o szczegóły. To nie jest zamówienie. W sprawie uzupełnień napisz na dgarbicz@gmail.com i podaj numer zapytania.`);
         // Only a random ID, never form contents, is kept for receipt analytics.
         try { sessionStorage.setItem('3dmake.quote.pending', requestId); } catch { /* Storage is optional. */ }
         sending = true;
         form.setAttribute('aria-busy', 'true');
         submit.disabled = true;
         submit.textContent = 'Wysyłanie…';
-        status.textContent = 'Przesyłam zapytanie. Poczekaj na stronę potwierdzenia. Jeśli pojawi się błąd połączenia, wróć przyciskiem Wstecz; przed ponowną wysyłką możesz napisać na dgarbicz@gmail.com.';
+        status.textContent = 'Przejdź przez sprawdzenie antyspamowe i poczekaj na stronę potwierdzenia. Jeśli pojawi się błąd połączenia, wróć przyciskiem Wstecz; przed ponowną wysyłką możesz napisać na dgarbicz@gmail.com.';
         status.dataset.state = 'pending'; status.hidden = false;
         // No artificial timeout or automatic retries.
     });

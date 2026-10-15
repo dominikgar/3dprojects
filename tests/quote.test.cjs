@@ -23,6 +23,7 @@ test('native POST stays enabled, receipt ID matches email, no PII in URL',()=>{
     const url=new URL(b.el('[name="_next"]').value), id=b.el('[name="Numer zapytania"]').value;
     assert.equal(url.pathname,'/zapytanie-przyjete.html');assert.equal(url.hash,'');assert.equal(url.searchParams.get('request'),id);
     assert.ok(b.el('[name="_subject"]').value.includes(id));assert.equal(b.saved.get('3dmake.quote.pending'),id);
+    assert.equal(b.el('[name="_captcha"]').value,'true');assert.ok(b.el('[name="_autoresponse"]').value.includes(id));
     assert.equal(b.el('#quote-email').value,'test@example.com');assert.equal(b.submit(),true);
     b.handlers.pageshow();assert.equal(b.el('[type="submit"]').disabled,false);assert.equal(b.el('#quote-description').value,'Test uchwytu');
 });
