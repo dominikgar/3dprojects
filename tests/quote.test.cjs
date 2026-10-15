@@ -20,7 +20,7 @@ function boot() {
 test('native POST stays enabled, receipt ID matches email, no PII in URL',()=>{
     const b=boot();assert.equal(b.submit(),false);
     assert.equal(b.el('#quote-fields').disabled,false);assert.equal(b.el('[type="submit"]').disabled,true);
-    const url=new URL(b.el('[name="_next"]').value), id=b.el('[name="Numer zapytania"]').value;
+    const url=new URL(b.el('[name="_next"]').value), id=b.el('[name="request_id"]').value;
     assert.equal(url.pathname,'/zapytanie-przyjete.html');assert.equal(url.hash,'');assert.equal(url.searchParams.get('request'),id);
     assert.ok(b.el('[name="_subject"]').value.includes(id));assert.equal(b.saved.get('3dmake.quote.pending'),id);
     assert.equal(b.el('[name="_captcha"]').value,'true');assert.ok(b.el('[name="_autoresponse"]').value.includes(id));
@@ -30,8 +30,11 @@ test('native POST stays enabled, receipt ID matches email, no PII in URL',()=>{
 test('multipart keeps two file names and all text fields',()=>{
     const b=boot();b.el('#quote-files').files=[{name:'uchwyt.jpg',size:4},{name:'uchwyt.stl',size:5}];
     const values=new Map([['files','unused'],['email','test@example.com'],['Opis i zastosowanie','uchwyt']]);const uploads=[];
-    b.form.listeners.formdata({formData:{set(k,v){values.set(k,v);},delete(k){values.delete(k);},append(...v){uploads.push(v);}}});
-    assert.equal(values.has('files'),false);assert.equal(values.get('email'),'test@example.com');assert.equal(values.get('Opis i zastosowanie'),'uchwyt');
+    values.set('Wymiary i dopasowanie','96 mm');values.set('Materiał','Nie wiem — proszę o dobór');values.set('request_id','test-id');
+    b.form.listeners.formdata({formData:{get(k){return values.get(k);},set(k,v){values.set(k,v);},delete(k){values.delete(k);},append(...v){uploads.push(v);}}});
+    assert.equal(values.has('files'),false);assert.equal(values.get('email'),'test@example.com');assert.equal(values.has('Opis i zastosowanie'),false);
+    assert.equal(values.get('request_type'),'repair');assert.equal(values.get('quantity'),'2');
+    for(const text of ['uchwyt','96 mm','Nie wiem — proszę o dobór','test-id','Odtworzenie uszkodzonej części']) assert.ok(values.get('message').includes(text));
     assert.deepEqual(uploads.map(v=>[v[0],v[2]]),[['attachment','uchwyt.jpg'],['attachment2','uchwyt.stl']]);
 });
 test('bad file sizes/counts/extensions, whitespace and honeypot stop POST',()=>{

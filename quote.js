@@ -48,7 +48,14 @@
     // CORS/redirect failures. Keep the fieldset enabled so no fields are dropped.
     form.addEventListener('formdata', event => {
         const data = event.formData;
-        data.set('Rodzaj zlecenia', types[selectedType()].title);
+        // FormSubmit silently filters some custom text fields. Send the complete
+        // Polish enquiry in its standard message field; keep routing values short.
+        const fields = ['Opis i zastosowanie', 'Wymiary i dopasowanie', 'Materiał', 'Oczekiwany termin', 'Link do plików'];
+        const details = fields.map(name => [name, String(data.get(name) || '').trim()]);
+        data.set('message', [`Rodzaj zlecenia: ${types[selectedType()].title}`, `Liczba sztuk: ${quantity.value}`, `Numer zapytania: ${data.get('request_id')}`, ...details.filter(([, value]) => value).map(([name, value]) => `${name}: ${value}`)].join('\n\n'));
+        [...fields, 'Rodzaj zlecenia', 'Liczba sztuk'].forEach(name => data.delete(name));
+        data.set('request_type', selectedType());
+        data.set('quantity', quantity.value);
         data.delete('files');
         Array.from(files.files || []).forEach((file, index) => data.append(index === 0 ? 'attachment' : `attachment${index + 1}`, file, file.name));
     });
@@ -63,8 +70,8 @@
         const requestId = crypto.randomUUID();
         const receipt = new URL('zapytanie-przyjete.html', location.href);
         receipt.searchParams.set('request', requestId);
-        hidden('_subject', `3D Make — ${types[selectedType()].title} — ${quantity.value} szt. — ${requestId}`);
-        hidden('Numer zapytania', requestId);
+        hidden('_subject', `3D Make - ${selectedType()} - ${quantity.value} szt. - ${requestId}`);
+        hidden('request_id', requestId);
         hidden('_template', 'table'); hidden('_captcha', 'true'); hidden('_next', receipt.href);
         hidden('_autoresponse', `3D Make — potwierdzenie zapytania ${requestId}. Dziękuję za opis i przesłane materiały. Odpowiem z wyceną lub pytaniami o szczegóły. To nie jest zamówienie. W sprawie uzupełnień napisz na dgarbicz@gmail.com i podaj numer zapytania.`);
         // Only a random ID, never form contents, is kept for receipt analytics.
