@@ -6,19 +6,19 @@ Odbiorca: dgarbicz@gmail.com. Darmowa usługa FormSubmit została aktywowana dla
 
 Temat zawiera rodzaj zlecenia i liczbę sztuk. Treść jest tabelą z zastosowaniem, wymiarami, materiałem, terminem i linkiem, jeśli zostały podane. Pliki są rzeczywistymi załącznikami poczty. Formularz przyjmuje do 5 plików o łącznym rozmiarze do 10 MB; większe można przekazać linkiem. Serwer dostawcy także egzekwuje limit rozmiaru. Warto sprawdzać folder Spam i kategorie Gmail.
 
-Klient otrzymuje potwierdzenie na stronie. Nie włączono automatycznej wiadomości zwrotnej. Potwierdzenie oznacza przyjęcie przez usługę, a nie zawarcie zamówienia. Cena gotowego druku od 30 zł nie obejmuje projektu, prób ani dostawy. Prace zaczynają się po uzgodnieniu ceny i zakresu.
+Klient otrzymuje osobną stronę potwierdzenia z numerem zapytania. Numer występuje również w e-mailu do administratora, więc można sprawdzić zgłoszenie bez ponownej wysyłki. Nie włączono automatycznej wiadomości zwrotnej — FormSubmit nie obsługuje jej przy wyłączonej CAPTCHA. Potwierdzenie oznacza przyjęcie przez usługę, a nie zawarcie zamówienia ani dowód dostarczenia do Gmail. Cena gotowego druku od 30 zł nie obejmuje projektu, prób ani dostawy. Prace zaczynają się po uzgodnieniu ceny i zakresu.
 
-## Dlaczego endpoint standardowy
+## Wysyłka przez przeglądarkę (naprawa 15.10.2026)
 
-W rzeczywistym teście `/ajax/…` przyjmował formularz, lecz pomijał załączniki. `quote.js` wysyła więc multipart do standardowego endpointu FormSubmit, a każdy plik otrzymuje osobne pole `attachment`, `attachment2` itd. CORS po stronie dostawcy pozwala użyć fetch. `_captcha=false` umożliwia obsługę bez przechodzenia na zewnętrzny ekran; ukryte pole `_honey` uzupełnia filtrowanie dostawcy. Jeśli pojawi się spam, trzeba zmienić ochronę formularza.
+Formularz przesyła natywny multipart POST do aktywowanego standardowego endpointu FormSubmit. Nie używa `fetch`, `/ajax/` ani łańcucha przekierowań odczytywanego przez JavaScript. Zdarzenie `formdata` nadaje każdemu plikowi osobne pole `attachment`, `attachment2` itd., zachowując jego nazwę. Pola tekstowe pozostają włączone podczas POST. Przycisk wysyłki blokuje podwójne kliknięcia. `_captcha=false` i ukryte pole `_honey` pozostają tak jak wcześniej.
 
-Dostawca po przyjęciu przekierowuje do `quote-received.json` z losowym identyfikatorem bieżącej próby. Kod wymaga dokładnie tego przekierowania i prawidłowej odpowiedzi JSON. Sama odpowiedź HTTP 200, strona aktywacji lub komunikat błędu nie są sukcesem. JSON potwierdzenia nie zawiera żadnych danych klienta i samodzielne otwarcie go nie generuje zdarzenia analitycznego. Hosting musi pozwalać na CORS dla tego publicznego pliku (GitHub Pages zwraca `Access-Control-Allow-Origin: *`).
+Po przyjęciu POST dostawca przekierowuje przeglądarkę do `zapytanie-przyjete.html?request=UUID`. Numer występuje także w temacie i treści wiadomości. Strona potwierdza przyjęcie do wysyłki, a nie dostarczenie do skrzynki ani zawarcie zamówienia. W URL nie ma danych klienta; strona ma noindex i no-referrer. Bez numeru pokazuje neutralny komunikat. Samo otwarcie lub odświeżenie potwierdzenia nie generuje leadu: event wymaga pasującego numeru ostatniej próby w sessionStorage i zużywa go tylko raz. Zgoda na GA4 nadal jest wymagana.
 
-Przy błędzie pola i wybrane pliki pozostają w formularzu. Po 45 sekundach oczekiwanie jest przerywane, bez automatycznego ponawiania. Po zerwanym połączeniu wiadomość może mimo wszystko dotrzeć — klient widzi taką informację. Odświeżenie zamyka stan formularza: treści i załączników nie zapisujemy w localStorage ani w GA4.
+Nie przerywamy wysyłki po 45 sekundach ani nie ponawiamy automatycznie. Błędy serwera są widoczne jako jego odpowiedź; przy błędzie sieci klient może wrócić przyciskiem Wstecz. `pageshow` odblokowuje przycisk przy powrocie. Przywrócenie pól/plików zależy od pamięci historii przeglądarki; nie gwarantujemy zachowania plików po odświeżeniu. W sessionStorage przechowujemy tylko losowy numer ostatniej próby do jednorazowego pomiaru; opisu, e-maila ani plików nie zapisujemy.
 
 ## Utrzymanie
 
-- Zachować `quote.js`, `quote-received.json` i aktualny adres formularza przy publikacji.
+- Zachować `quote.js`, `quote-receipt.js`, `zapytanie-przyjete.html` i aktualny adres formularza przy publikacji. Stary `quote-received.json` pozostaje jedynie dla zgodności ze stronami otwartymi przed aktualizacją.
 - Nie zmieniać endpointu na `/ajax/…`, bo test wykazał utratę plików.
 - Po zmianie domeny lub adresu odbiorcy ponownie sprawdzić aktywację oraz rzeczywiste dostarczenie plików i nagłówek Reply-To.
 - Dokumentacja usługi: https://formsubmit.co/documentation; prywatność: https://formsubmit.co/privacy.pdf.
