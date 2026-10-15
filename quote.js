@@ -52,7 +52,7 @@
         // Polish enquiry in its standard message field; keep routing values short.
         const fields = ['Opis i zastosowanie', 'Wymiary i dopasowanie', 'Materiał', 'Oczekiwany termin', 'Link do plików'];
         const details = fields.map(name => [name, String(data.get(name) || '').trim()]);
-        data.set('message', [`Rodzaj zlecenia: ${types[selectedType()].title}`, `Liczba sztuk: ${quantity.value}`, `Numer zapytania: ${data.get('request_id')}`, ...details.filter(([, value]) => value).map(([name, value]) => `${name}: ${value}`)].join('\n\n'));
+        data.set('message', details.filter(([, value]) => value).map(([name, value]) => name === 'Opis i zastosowanie' ? value : `${name}: ${value}`).join('\n\n'));
         [...fields, 'Rodzaj zlecenia', 'Liczba sztuk'].forEach(name => data.delete(name));
         data.set('request_type', selectedType());
         data.set('quantity', quantity.value);

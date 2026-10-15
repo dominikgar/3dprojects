@@ -34,7 +34,8 @@ test('multipart keeps two file names and all text fields',()=>{
     b.form.listeners.formdata({formData:{get(k){return values.get(k);},set(k,v){values.set(k,v);},delete(k){values.delete(k);},append(...v){uploads.push(v);}}});
     assert.equal(values.has('files'),false);assert.equal(values.get('email'),'test@example.com');assert.equal(values.has('Opis i zastosowanie'),false);
     assert.equal(values.get('request_type'),'repair');assert.equal(values.get('quantity'),'2');
-    for(const text of ['uchwyt','96 mm','Nie wiem — proszę o dobór','test-id','Odtworzenie uszkodzonej części']) assert.ok(values.get('message').includes(text));
+    for(const text of ['uchwyt','96 mm','Nie wiem — proszę o dobór']) assert.ok(values.get('message').includes(text));
+    assert.equal(values.get('request_id'),'test-id');assert.ok(values.get('message').startsWith('uchwyt'));
     assert.deepEqual(uploads.map(v=>[v[0],v[2]]),[['attachment','uchwyt.jpg'],['attachment2','uchwyt.stl']]);
 });
 test('bad file sizes/counts/extensions, whitespace and honeypot stop POST',()=>{
